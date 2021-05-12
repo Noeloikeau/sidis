@@ -1,5 +1,5 @@
 # *SIDIS* : **SI**mple **D**ata **I**nterface**S**
-> is a Python module for easy data science named after the early American polymath, William James Sidis.
+> is a Python module for easy data science named after the early American polymath, William James Sidis. The modules here implement extensive recursion and typecasting beneath the hood in order to eliminate common programming tasks like converting and sorting data in slightly different ways. Documentation can be found on the respective pages in the docs website at https://noeloikeau.github.io/sidis/. Here we give a brief overview of some of the main functions.
 
 
 ## Install
