@@ -2,12 +2,6 @@
 > **SI**mple **D**ata **I**nterface**S** , https://noeloikeau.github.io/sidis/
 
 
-is a Python module for easy data science named after the early American polymath, William James Sidis.
-
-The modules here implement extensive recursion and typecasting beneath the hood in order to eliminate common programming tasks like converting and sorting data in slightly different ways. 
-
-Even for expert python users, the programs here are powerful. Documentation can be found on the respective pages in the docs website above. Here we give a brief overview of some of the main functions.
-
 ## Install
 
 **NYI**: `pip install sidis`
@@ -141,10 +135,10 @@ sort(g.edges,'weight')
 
 
 
-    [array([0.97161462]),
-     array([0.87699799]),
-     array([0.52593648]),
-     array([0.10085175])]
+    [array([0.97601752]),
+     array([0.86388663]),
+     array([0.78046723]),
+     array([0.02531015])]
 
 
 
