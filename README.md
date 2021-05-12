@@ -1,6 +1,12 @@
-# *sidis* :
-> **Si**mple **D**ata **I**nterface**S** , https://noeloikeau.github.io/sidis/
+# *SIDIS* :
+> **SI**mple **D**ata **I**nterface**S** , https://noeloikeau.github.io/sidis/
 
+
+is a Python module for easy data science named after the early American polymath, William James Sidis.
+
+The modules here implement extensive recursion and typecasting beneath the hood in order to eliminate common programming tasks like converting and sorting data in slightly different ways. 
+
+Even for expert python users, the programs here are powerful. Documentation can be found on the respective pages in the docs website above. Here we give a brief overview of some of the main functions.
 
 ## Install
 
@@ -12,6 +18,12 @@
 import sidis
 from sidis import *
 ```
+
+    C:\Anaconda3\lib\site-packages\numpy\_distributor_init.py:32: UserWarning: loaded more than 1 DLL from .libs:
+    C:\Anaconda3\lib\site-packages\numpy\.libs\libopenblas.NOIJJG62EMASZI6NYURL6JBKM4EVBGM7.gfortran-win_amd64.dll
+    C:\Anaconda3\lib\site-packages\numpy\.libs\libopenblas.PYQHXLVVQ7VESDPUVUADXEVJOBGHJPAY.gfortran-win_amd64.dll
+      stacklevel=1)
+    
 
 ## Sorting, converting, accessing complex datastructures
 
@@ -129,10 +141,10 @@ sort(g.edges,'weight')
 
 
 
-    [array([0.88512267]),
-     array([0.52500761]),
-     array([0.45325752]),
-     array([0.27580335])]
+    [array([0.97161462]),
+     array([0.87699799]),
+     array([0.52593648]),
+     array([0.10085175])]
 
 
 
