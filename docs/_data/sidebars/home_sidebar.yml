@@ -13,13 +13,13 @@ entries:
       title: utils
       url: utils.html
     - output: web,pdf
-      title: data
+      title: conversion
       url: conversion.html
     - output: web,pdf
       title: recursion
       url: recursion.html
     - output: web,pdf
-      title: Title
+      title: templates
       url: templates.html
     output: web
     title: sidis

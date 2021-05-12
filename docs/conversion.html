@@ -1,13 +1,13 @@
 ---
 
-title: data
+title: conversion
 
 
 keywords: fastai
 sidebar: home_sidebar
 
-
-
+summary: "This module defines typecasting and conversion functions for easily manipulating and generating data. The most powerful methods are `cast` and `convert`. Other utilities include `RNG` and `fill`, as well as extensions of binary logic to continuous variables such as `XOR`, and encodings such as gray code."
+description: "This module defines typecasting and conversion functions for easily manipulating and generating data. The most powerful methods are `cast` and `convert`. Other utilities include `RNG` and `fill`, as well as extensions of binary logic to continuous variables such as `XOR`, and encodings such as gray code."
 nb_path: "01_conversion.ipynb"
 ---
 <!--
@@ -490,7 +490,7 @@ Fallback case of more complex casting behavior.</p>
 [0 1]  to  dict  :  [0 1]
 [0, 1]  to  set  :  {0, 1}
 (0, 1)  to  set  :  {0, 1}
-01  to  set  :  {&#39;1&#39;, &#39;0&#39;}
+01  to  set  :  {&#39;0&#39;, &#39;1&#39;}
 {0: 1}  to  set  :  {0}
 {0, 1}  to  set  :  {0, 1}
 [0 1]  to  set  :  {0, 1}
@@ -754,7 +754,7 @@ From 01 to list: [&#39;0&#39;, &#39;1&#39;]
 From 01 to tuple: (&#39;0&#39;, &#39;1&#39;)
 From 01 to str: 01
 From 01 to dict: 01
-From 01 to set: {&#39;1&#39;, &#39;0&#39;}
+From 01 to set: {&#39;0&#39;, &#39;1&#39;}
 From 01 to numpy.ndarray: 01
 From {0: 0.1} to int: {0: 0}
 From {0: 0.1} to float: {0: 0.1}
