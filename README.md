@@ -62,8 +62,9 @@ Sidis lets you sort python objects by the result of maps over those objects, and
 from sidis import sort, convert
 ```
 
+Convert the elements of a list to binary arrays, and sort by the length of the array:
+
 ```python
-#Convert the elements of a list to binary arrays, and sort by the length of the array
 sort([0,10,3,5],by=convert,key=lambda t:len(t[-1]))
 ```
 
@@ -110,7 +111,7 @@ get(a,0) #get 0th level or attribute of a
 
 
 ```python
-[give(a,0,a[0]+1) for i in range(10)] #and can assign arbitrary levels of objects without writing entire loops!
+[give(a,0,a[0]+1) for i in range(10)] #and can assign arbitrary objects without writing entire loops!
 a
 ```
 
@@ -199,10 +200,10 @@ sort(g.edges,'weight')
 
 
 
-    [array([0.6407291]),
-     array([0.40178821]),
-     array([0.36836607]),
-     array([0.11689043])]
+    [array([0.99698538]),
+     array([0.90294296]),
+     array([0.47634498]),
+     array([0.1643804])]
 
 
 
