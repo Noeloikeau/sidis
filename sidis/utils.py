@@ -59,14 +59,12 @@ def push(branch='master',comment='auto'):
     os.system('git commit -m "{}"'.format(comment)) #commit all files
     os.system('git push -u origin {} --force'.format(branch))
 
-def refresh(push=True,hooks=False,comment='auto',branch='master'):
+def refresh(comment='auto',branch='master'):
     "Builds nbdev library and docs."
     os.system('nbdev_build_lib') #build core python module
-    if hooks:
-        os.system('nbdev_install_git_hooks')
+    os.system('nbdev_install_git_hooks')
     os.system('nbdev_build_docs') #build code documentation
-    if push:
-        push(comment=comment,branch=branch)
+    push(comment=comment,branch=branch)
 
 def backup(comment='Backup'):
     "Like `Push` but with branch set to `backup`."

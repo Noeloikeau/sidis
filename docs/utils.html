@@ -79,11 +79,37 @@ C:\Anaconda3\lib\site-packages\numpy\.libs\libopenblas.PYQHXLVVQ7VESDPUVUADXEVJO
 
 </div>
 
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nd">@timer</span>
+<span class="k">def</span> <span class="nf">say_hi</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hi&#39;</span><span class="p">)</span>
+<span class="n">say_hi</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>hi
-say_hi : Elapsed time: 0.0000 seconds
+say_hi : Elapsed time: 0.0007 seconds
 </pre>
 </div>
 </div>
@@ -119,6 +145,29 @@ say_hi : Elapsed time: 0.0000 seconds
 </div>
 
 </div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">filesize</span><span class="p">(</span><span class="s1">&#39;setup.py&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
 
 <div class="output_area">
 
@@ -163,6 +212,30 @@ Maximizes speed and compression of objects.</p>
 
 </div>
 
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">save</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">fname</span><span class="o">=</span><span class="s1">&#39;data.gz&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -202,6 +275,29 @@ Maximizes speed and compression of objects.</p>
 </div>
 
 </div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">load</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="s1">&#39;data.gz&#39;</span><span class="p">,</span><span class="n">delete</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
 
 <div class="output_area">
 
@@ -255,7 +351,7 @@ Maximizes speed and compression of objects.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="refresh" class="doc_header"><code>refresh</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/utils.py#L62" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>refresh</code>(<strong><code>push</code></strong>=<em><code>True</code></em>, <strong><code>hooks</code></strong>=<em><code>False</code></em>, <strong><code>comment</code></strong>=<em><code>'auto'</code></em>, <strong><code>branch</code></strong>=<em><code>'master'</code></em>)</p>
+<h4 id="refresh" class="doc_header"><code>refresh</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/utils.py#L62" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>refresh</code>(<strong><code>comment</code></strong>=<em><code>'auto'</code></em>, <strong><code>branch</code></strong>=<em><code>'master'</code></em>)</p>
 </blockquote>
 <p>Builds nbdev library and docs.</p>
 
@@ -280,7 +376,7 @@ Maximizes speed and compression of objects.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="backup" class="doc_header"><code>backup</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/utils.py#L71" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>backup</code>(<strong><code>comment</code></strong>=<em><code>'Backup'</code></em>)</p>
+<h4 id="backup" class="doc_header"><code>backup</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/utils.py#L69" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>backup</code>(<strong><code>comment</code></strong>=<em><code>'Backup'</code></em>)</p>
 </blockquote>
 <p>Like <code>Push</code> but with branch set to <a href="/sidis/utils.html#backup"><code>backup</code></a>.</p>
 
@@ -312,7 +408,7 @@ Maximizes speed and compression of objects.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="forceAspect" class="doc_header"><code>forceAspect</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/utils.py#L123" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>forceAspect</code>(<strong><code>ax</code></strong>:<code>matplotlib.axes</code>, <strong><code>aspect</code></strong>:<code>int</code>=<em><code>1</code></em>)</p>
+<h4 id="forceAspect" class="doc_header"><code>forceAspect</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/utils.py#L121" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>forceAspect</code>(<strong><code>ax</code></strong>:<code>matplotlib.axes</code>, <strong><code>aspect</code></strong>:<code>int</code>=<em><code>1</code></em>)</p>
 </blockquote>
 <p>Forces the aspect of the axes object <code>ax</code>.</p>
 
@@ -337,7 +433,7 @@ Maximizes speed and compression of objects.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="matshow" class="doc_header"><code>matshow</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/utils.py#L132" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>matshow</code>(<strong><code>x</code></strong>:<code>ndarray</code>, <strong><code>aspect</code></strong>:<code>int</code>=<em><code>1</code></em>, <strong><code>save</code></strong>:<code>bool</code>=<em><code>True</code></em>, <strong><code>fname</code></strong>:<code>str</code>=<em><code>'test'</code></em>)</p>
+<h4 id="matshow" class="doc_header"><code>matshow</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/utils.py#L130" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>matshow</code>(<strong><code>x</code></strong>:<code>ndarray</code>, <strong><code>aspect</code></strong>:<code>int</code>=<em><code>1</code></em>, <strong><code>save</code></strong>:<code>bool</code>=<em><code>True</code></em>, <strong><code>fname</code></strong>:<code>str</code>=<em><code>'test'</code></em>)</p>
 </blockquote>
 <p>Simplified image plot of matrix <code>x</code> with forced <code>aspect</code> that can save <code>fname</code> to <code>path</code>.</p>
 

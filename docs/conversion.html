@@ -61,7 +61,7 @@ C:\Anaconda3\lib\site-packages\numpy\.libs\libopenblas.PYQHXLVVQ7VESDPUVUADXEVJO
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We begin with some motivating definitions and examples before building up to the the final typecasting function <a href="/sidis/conversion.html#cast"><code>cast</code></a>. Thee data types considered here are given as a typehint <a href="/sidis/conversion.html#data"><code>data</code></a> and dictionary <a href="/sidis/conversion.html#types"><code>types</code></a>.</p>
+<p>In order to build the modular typecasting callable <a href="/sidis/conversion.html#cast"><code>cast</code></a>, we start by outlining the data types and default conversion behavior of python, before extending it to wrap non-iterable objects in the desired iterable, and convert the elements of iterable objects to the desired non-iterable type (shown by examples).</p>
 
 </div>
 </div>
@@ -69,17 +69,20 @@ C:\Anaconda3\lib\site-packages\numpy\.libs\libopenblas.PYQHXLVVQ7VESDPUVUADXEVJO
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span><span class="nb">int</span><span class="p">,</span><span class="nb">float</span><span class="p">,</span><span class="nb">list</span><span class="p">,</span><span class="nb">tuple</span><span class="p">,</span><span class="nb">str</span><span class="p">,</span><span class="nb">dict</span><span class="p">,</span><span class="nb">set</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We start with a simple try except conversion which guarantees the object is at least <em>treated</em> as the desired type, even if it can't be directly converted (yet).</p>
-
-</div>
-</div>
-</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -98,12 +101,78 @@ C:\Anaconda3\lib\site-packages\numpy\.libs\libopenblas.PYQHXLVVQ7VESDPUVUADXEVJO
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="__cast" class="doc_header"><code>__cast</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L19" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>__cast</code>(<strong><code>to</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>list</code>, <code>tuple</code>, <code>str</code>, <code>dict</code>, <code>set</code>, <code>ndarray</code>], <strong><code>obj</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>list</code>, <code>tuple</code>, <code>str</code>, <code>dict</code>, <code>set</code>, <code>ndarray</code>])</p>
+<h4 id="trycast" class="doc_header"><code>trycast</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L18" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>trycast</code>(<strong><code>obj</code></strong>:<code>Union</code>[<code>NoneType</code>, <code>int</code>, <code>float</code>, <code>list</code>, <code>tuple</code>, <code>str</code>, <code>dict</code>, <code>set</code>, <code>ndarray</code>], <strong><code>to</code></strong>:<code>type</code>)</p>
 </blockquote>
-<p>Typecasts <code>obj</code> to datatype <code>to</code>.
-First inner typecasting function.
-Fallback case of more complex casting behavior.</p>
+<p>Attempts to typecast <code>obj</code> to datatype <code>to</code>
+using default type conversion. Fallback
+of more complex casting cases in this module.</p>
 
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trycast</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="nb">int</span><span class="p">)</span> <span class="c1">#works like int(0.5)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trycast</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">list</span><span class="p">)</span> <span class="c1">#just return 0 as list(0) gives an error - we want an actual list!</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0</pre>
 </div>
 
 </div>
@@ -116,132 +185,7 @@ Fallback case of more complex casting behavior.</p>
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Next, we will create a global dict <a href="/sidis/conversion.html#rules"><code>rules</code></a> keyed by type that is valued by a partially evaluated <a href="/sidis/conversion.html#__cast"><code>__cast</code></a> on that type. This allows us to modify the future behavior of the cast if desired. To understand partial evaluation, consider:</p>
-
-</div>
-</div>
-</div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">p</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">p</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>(1, 0)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rules</span><span class="p">[</span><span class="kc">None</span><span class="p">](</span><span class="s1">&#39;no arg type, returns whatever we give it&#39;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&#39;no arg type, returns whatever we give it&#39;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">rules</span><span class="p">[</span><span class="nb">int</span><span class="p">](</span><span class="mf">0.5</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">rules</span><span class="p">[</span><span class="nb">int</span><span class="p">]([</span><span class="mf">0.5</span><span class="p">]))</span>
-<span class="n">rules</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">](</span><span class="mi">0</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>0
-[0.5]
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>array(0)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The list input, array, and None would have failed without this treatment. We now define another intermediary <code>_cast</code> to do this so we can treat it as a callable and switch the order of the arguments to the more pythonic <code>obj</code>, <code>to</code>.</p>
+<p>The default typecasting, as in the above, has some obvious limitations which can be extended with a basic consideration of whether the object is to be treated as an iterable or a non-iterable. To that end,</p>
 
 </div>
 </div>
@@ -264,38 +208,14 @@ Fallback case of more complex casting behavior.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="cast_" class="doc_header"><code>cast_</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L36" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cast_</code>(<strong><code>obj</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>list</code>, <code>tuple</code>, <code>str</code>, <code>dict</code>, <code>set</code>, <code>ndarray</code>], <strong><code>to</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>list</code>, <code>tuple</code>, <code>str</code>, <code>dict</code>, <code>set</code>, <code>ndarray</code>])</p>
+<h4 id="nonitr2itr" class="doc_header"><code>nonitr2itr</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L30" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>nonitr2itr</code>(<strong><code>obj</code></strong>:<code>Union</code>[<code>NoneType</code>, <code>int</code>, <code>float</code>, <code>list</code>, <code>tuple</code>, <code>str</code>, <code>dict</code>, <code>set</code>, <code>ndarray</code>], <strong><code>to</code></strong>:<code>type</code>)</p>
 </blockquote>
-<p>Second inner typecast function using global rulebook <a href="/sidis/conversion.html#rules"><code>rules</code></a>.</p>
+<p>Wrap the noniterable <code>obj</code> into the iterable type <code>to</code>.</p>
 
 </div>
 
 </div>
 
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>With this formulation we can update the rules and get new casting behavior.</p>
-
-</div>
-</div>
-</div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rules</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span><span class="o">=</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;changed&#39;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
 </div>
 </div>
 
@@ -309,46 +229,7 @@ Fallback case of more complex casting behavior.</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cast_</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>changed
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>And change it back.</p>
-
-</div>
-</div>
-</div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rules</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span>
-<span class="n">cast_</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nonitr2itr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">list</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -363,33 +244,13 @@ Fallback case of more complex casting behavior.</p>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>array(0)</pre>
+<pre>[0]</pre>
 </div>
 
 </div>
 
 </div>
 </div>
-
-</div>
-    {% endraw %}
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Wrapping">Wrapping<a class="anchor-link" href="#Wrapping"> </a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The type casting above is simple. Often times it is convenient to "wrap" the desired type over the input type. We will now construct a <code>wrap</code> function which does this, depending on if the object is an iterable or not.</p>
-
-</div>
-</div>
-</div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
 
 </div>
     {% endraw %}
@@ -412,7 +273,639 @@ Fallback case of more complex casting behavior.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="typestr" class="doc_header"><code>typestr</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L49" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>typestr</code>(<strong><code>x</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>list</code>, <code>tuple</code>, <code>str</code>, <code>dict</code>, <code>set</code>, <code>ndarray</code>])</p>
+<h4 id="itr2nonitr" class="doc_header"><code>itr2nonitr</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L50" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>itr2nonitr</code>(<strong><code>obj</code></strong>:<code>Union</code>[<code>NoneType</code>, <code>int</code>, <code>float</code>, <code>list</code>, <code>tuple</code>, <code>str</code>, <code>dict</code>, <code>set</code>, <code>ndarray</code>], <strong><code>to</code></strong>:<code>type</code>)</p>
+</blockquote>
+<p>Treat each element of the iterable <code>obj</code> as the
+noniterable type <code>to</code>.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">itr2nonitr</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">1.5</span><span class="p">],</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[0, 1]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="itr2itr" class="doc_header"><code>itr2itr</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L62" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>itr2itr</code>(<strong><code>obj</code></strong>:<code>Union</code>[<code>NoneType</code>, <code>int</code>, <code>float</code>, <code>list</code>, <code>tuple</code>, <code>str</code>, <code>dict</code>, <code>set</code>, <code>ndarray</code>], <strong><code>to</code></strong>:<code>type</code>)</p>
+</blockquote>
+<p>Treat the iterable <code>obj</code> as a new iterable of type <code>to</code>.
+Treats dictionaries as their items rather than default keys,
+and treats np.ndarray as the callable np.array(obj).</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">itr2itr</span><span class="p">({</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">},</span><span class="nb">list</span><span class="p">)</span> <span class="c1">#simply treats dict -&gt; itrtype as dict.items() -&gt; itrtype, as list(dict) returns dict.keys()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[(0, 1)]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">itr2itr</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="c1">#makes sure the datatype np.ndarray yields the callable np.array()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([0, 1])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now, we combine these conversion cases into a single object, the <a href="/sidis/conversion.html#Caster"><code>Caster</code></a> class, which instantiates as a callable dictionary of partially evaluated functions, that typecast according to the type of the object they are called on, and the type to be casted to. The ruleset is stored as a dictionary which can be modified in place to treat objects differently as needed.</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="Caster" class="doc_header"><code>class</code> <code>Caster</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L80" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Caster</code>(<strong><code>rules</code></strong>:<code>Optional</code>[<code>dict</code>]=<em><code>None</code></em>)</p>
+</blockquote>
+<p>Universal typecasting class with customizable ruleset.
+Stores the ruleset as a dictionary of dictionaries.
+The outer dictionary stores the type of the object to be converted.
+The inner dictionary stores all the types to convert into.
+The values are partially evaluated functions on the inner type,
+which get called by a class object and evaluated on the outer type.
+The ruleset can be updated and changed as needed.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cast</span><span class="o">=</span><span class="n">Caster</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a href="/sidis/conversion.html#cast"><code>cast</code></a> wraps non-iterables in iterables:</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cast</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">list</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[0]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a href="/sidis/conversion.html#cast"><code>cast</code></a> converts the elements of an iterable into the desired non-iterable:</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cast</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">1.5</span><span class="p">],</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[0, 1]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a href="/sidis/conversion.html#cast"><code>cast</code></a> accepts multiple arguments for sequential conversion:</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cast</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.1</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="nb">int</span><span class="p">,</span><span class="nb">set</span><span class="p">,</span><span class="nb">list</span><span class="p">)</span> <span class="c1">#convert to int, get unique elements, return as list</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[0, 1, 2]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>By default, we choose to treat strings as non-iterables. This proves useful in later applications of the module.</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cast</span><span class="p">(</span><span class="s1">&#39;hi&#39;</span><span class="p">,</span><span class="nb">list</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;hi&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If we want to change this, we can do so by examining how <a href="/sidis/conversion.html#cast"><code>cast</code></a> converts objects:</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cast</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{None: functools.partial(&lt;function trycast at 0x000002CA8C85D0D8&gt;, to=None),
+ int: functools.partial(&lt;function trycast at 0x000002CA8C85D0D8&gt;, to=&lt;class &#39;int&#39;&gt;),
+ float: functools.partial(&lt;function trycast at 0x000002CA8C85D0D8&gt;, to=&lt;class &#39;float&#39;&gt;),
+ list: functools.partial(&lt;function nonitr2itr at 0x000002CAA9C691F8&gt;, to=&lt;class &#39;list&#39;&gt;),
+ tuple: functools.partial(&lt;function nonitr2itr at 0x000002CAA9C691F8&gt;, to=&lt;class &#39;tuple&#39;&gt;),
+ str: functools.partial(&lt;function trycast at 0x000002CA8C85D0D8&gt;, to=&lt;class &#39;str&#39;&gt;),
+ dict: functools.partial(&lt;function nonitr2itr at 0x000002CAA9C691F8&gt;, to=&lt;class &#39;dict&#39;&gt;),
+ set: functools.partial(&lt;function nonitr2itr at 0x000002CAA9C691F8&gt;, to=&lt;class &#39;set&#39;&gt;),
+ numpy.ndarray: functools.partial(&lt;function nonitr2itr at 0x000002CAA9C691F8&gt;, to=&lt;class &#39;numpy.ndarray&#39;&gt;)}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It is a nested dictionary, keyed by the datatype to be converted, and valued by an inner dict, which is keyed by the datatype to convert to, and valued with a function converting from the outer key to the inner key. To change how the <em>instance</em> evaluates strings to lists for example,</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cast</span><span class="p">[</span><span class="nb">str</span><span class="p">][</span><span class="nb">list</span><span class="p">]</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cast</span><span class="p">(</span><span class="s1">&#39;hi&#39;</span><span class="p">,</span><span class="nb">list</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;h&#39;, &#39;i&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If instead we want to change the default behavior of strings to be treated as an iterable, then we can modify the Caster class <code>iterables</code>:</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Caster</span><span class="o">.</span><span class="n">iterables</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[list, tuple, dict, set, numpy.ndarray]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Caster</span><span class="o">.</span><span class="n">iterables</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we re-instantiate a class instance,</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cast</span><span class="o">=</span><span class="n">Caster</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cast</span><span class="p">(</span><span class="s1">&#39;hi&#39;</span><span class="p">,</span><span class="nb">tuple</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(&#39;h&#39;, &#39;i&#39;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>and strings are treated as iterables, as in native python types. This process can be applied to any datatype, include new ones, etc. We can change it back again by:</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Caster</span><span class="o">.</span><span class="n">iterables</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="n">cast</span><span class="o">=</span><span class="n">Caster</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now let's see all the types of data conversions, with a parsing function for easy printing of datatypes:</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="typestr" class="doc_header"><code>typestr</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L145" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>typestr</code>(<strong><code>x</code></strong>:<code>Union</code>[<code>NoneType</code>, <code>int</code>, <code>float</code>, <code>list</code>, <code>tuple</code>, <code>str</code>, <code>dict</code>, <code>set</code>, <code>ndarray</code>])</p>
 </blockquote>
 <p>Parses the string of the input type for readability.</p>
 
@@ -420,92 +913,15 @@ Fallback case of more complex casting behavior.</p>
 
 </div>
 
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[&#39;list&#39;, &#39;tuple&#39;, &#39;str&#39;, &#39;dict&#39;, &#39;set&#39;, &#39;numpy.ndarray&#39;]
-[&#39;int&#39;, &#39;float&#39;]
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The following conversions between the two types demonstrate these meanings:</p>
-
-</div>
-</div>
-</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">iterables</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="s1">&#39;01&#39;</span><span class="p">,{</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">},</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])]:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="s1">&#39; to &#39;</span><span class="p">,</span><span class="n">typestr</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="s1">&#39; : &#39;</span><span class="p">,</span><span class="n">cast_</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[0, 1]  to  list  :  [0, 1]
-(0, 1)  to  list  :  [0, 1]
-01  to  list  :  [&#39;0&#39;, &#39;1&#39;]
-{0: 1}  to  list  :  [0]
-{0, 1}  to  list  :  [0, 1]
-[0 1]  to  list  :  [0, 1]
-[0, 1]  to  tuple  :  (0, 1)
-(0, 1)  to  tuple  :  (0, 1)
-01  to  tuple  :  (&#39;0&#39;, &#39;1&#39;)
-{0: 1}  to  tuple  :  (0,)
-{0, 1}  to  tuple  :  (0, 1)
-[0 1]  to  tuple  :  (0, 1)
-[0, 1]  to  str  :  [0, 1]
-(0, 1)  to  str  :  (0, 1)
-01  to  str  :  01
-{0: 1}  to  str  :  {0: 1}
-{0, 1}  to  str  :  {0, 1}
-[0 1]  to  str  :  [0 1]
-[0, 1]  to  dict  :  [0, 1]
-(0, 1)  to  dict  :  (0, 1)
-01  to  dict  :  01
-{0: 1}  to  dict  :  {0: 1}
-{0, 1}  to  dict  :  {0, 1}
-[0 1]  to  dict  :  [0 1]
-[0, 1]  to  set  :  {0, 1}
-(0, 1)  to  set  :  {0, 1}
-01  to  set  :  {&#39;0&#39;, &#39;1&#39;}
-{0: 1}  to  set  :  {0}
-{0, 1}  to  set  :  {0, 1}
-[0 1]  to  set  :  {0, 1}
-[0, 1]  to  numpy.ndarray  :  [0 1]
-(0, 1)  to  numpy.ndarray  :  [0 1]
-01  to  numpy.ndarray  :  01
-{0: 1}  to  numpy.ndarray  :  {0: 1}
-{0, 1}  to  numpy.ndarray  :  {0, 1}
-[0 1]  to  numpy.ndarray  :  [0 1]
-</pre>
-</div>
-</div>
-
-</div>
-</div>
 
 </div>
     {% endraw %}
@@ -517,208 +933,8 @@ Fallback case of more complex casting behavior.</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">]:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="s1">&#39; to &#39;</span><span class="p">,</span><span class="n">typestr</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="s1">&#39; : &#39;</span><span class="p">,</span><span class="n">cast_</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>0  to  int  :  0
-0.1  to  int  :  0
-0  to  float  :  0.0
-0.1  to  float  :  0.1
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">],(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">),</span><span class="s1">&#39;01&#39;</span><span class="p">,{</span><span class="mi">0</span><span class="p">:</span><span class="mf">0.1</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">},</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">])]:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="s1">&#39; to &#39;</span><span class="p">,</span><span class="n">typestr</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="s1">&#39; : &#39;</span><span class="p">,</span><span class="n">cast_</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[0, 0.1]  to  int  :  [0, 0.1]
-(0, 0.1)  to  int  :  (0, 0.1)
-01  to  int  :  1
-{0: 0.1}  to  int  :  {0: 0.1}
-{0, 0.1}  to  int  :  {0, 0.1}
-[0.  0.1]  to  int  :  [0.  0.1]
-[0, 0.1]  to  float  :  [0, 0.1]
-(0, 0.1)  to  float  :  (0, 0.1)
-01  to  float  :  1.0
-{0: 0.1}  to  float  :  {0: 0.1}
-{0, 0.1}  to  float  :  {0, 0.1}
-[0.  0.1]  to  float  :  [0.  0.1]
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">iterables</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">]:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="s1">&#39; to &#39;</span><span class="p">,</span><span class="n">typestr</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="s1">&#39; : &#39;</span><span class="p">,</span><span class="n">cast_</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>0  to  list  :  0
-0.1  to  list  :  0.1
-0  to  tuple  :  0
-0.1  to  tuple  :  0.1
-0  to  str  :  0
-0.1  to  str  :  0.1
-0  to  dict  :  0
-0.1  to  dict  :  0.1
-0  to  set  :  0
-0.1  to  set  :  0.1
-0  to  numpy.ndarray  :  0
-0.1  to  numpy.ndarray  :  0.1
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>As can be seen, the cross-conversions are nonexistent. We change this with the following rules:</p>
-<blockquote><p>iters-&gt;numbers :convert every element in the iter&gt; numbers-&gt;iters :wrap the iterable type around the number
-For the special case of dictionaries, which are multi-valued, we convert the <em>values</em> to the number type, and not the keys (the keys are obtainable from the iterable&lt;-&gt;iterable mappings above). Similarly, for numbers-&gt;dict, we key by the number itself. This is a convention but it is nonambiguous when iterating over the number, as it will return the number. In summary:
-dict -&gt; number :convert every value (not key) to number&gt; number -&gt; dict :key by number</p>
-</blockquote>
-
-</div>
-</div>
-</div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="cast" class="doc_header"><code>cast</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L60" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cast</code>(<strong><code>obj</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>list</code>, <code>tuple</code>, <code>str</code>, <code>dict</code>, <code>set</code>, <code>ndarray</code>], <strong><code>to</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>list</code>, <code>tuple</code>, <code>str</code>, <code>dict</code>, <code>set</code>, <code>ndarray</code>]=<em><code>None</code></em>)</p>
-</blockquote>
-<p>Universal typecasting function.
-Typecasts the <code>obj</code> to the desired datatype <code>to</code>,
-with support for wrapping of various types.</p>
-
-</div>
-
-</div>
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>From 1 to int: 1
-From 1 to float: 1.0
-From 1 to list: [1]
-From 1 to tuple: (1,)
-From 1 to str: 1
-From 1 to dict: {1: 1}
-From 1 to set: {1}
-From 1 to numpy.ndarray: 1
-From 1.5 to int: 1
-From 1.5 to float: 1.5
-From 1.5 to list: [1.5]
-From 1.5 to tuple: (1.5,)
-From 1.5 to str: 1.5
-From 1.5 to dict: {1.5: 1.5}
-From 1.5 to set: {1.5}
-From 1.5 to numpy.ndarray: 1.5
-From 2.3 to int: 2
-From 2.3 to float: 2.3
-From 2.3 to list: [2.3]
-From 2.3 to tuple: (2.3,)
-From 2.3 to str: 2.3
-From 2.3 to dict: {2.3: 2.3}
-From 2.3 to set: {2.3}
-From 2.3 to numpy.ndarray: 2.3
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">],(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">),</span><span class="s1">&#39;01&#39;</span><span class="p">,{</span><span class="mi">0</span><span class="p">:</span><span class="mf">0.1</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">},</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">])]:</span>
-    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">types</span><span class="p">:</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.5</span><span class="p">]:</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">Caster</span><span class="o">.</span><span class="n">noniterables</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;From </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1"> to </span><span class="si">{</span><span class="n">typestr</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">cast</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">t</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 
@@ -732,52 +948,163 @@ From 2.3 to numpy.ndarray: 2.3
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>From [0, 0.1] to int: [0, 0]
+<pre>From 0 to NoneType: 0
+From 0 to int: 0
+From 0 to float: 0.0
+From 0 to str: 0
+From 1.5 to NoneType: 1.5
+From 1.5 to int: 1
+From 1.5 to float: 1.5
+From 1.5 to str: 1.5
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">1.5</span><span class="p">,</span><span class="s1">&#39;1.5&#39;</span><span class="p">]:</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">Caster</span><span class="o">.</span><span class="n">iterables</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;From </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1"> to </span><span class="si">{</span><span class="n">typestr</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">cast</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">t</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>From 1.5 to list: [1.5]
+From 1.5 to tuple: (1.5,)
+From 1.5 to dict: {1.5: 1.5}
+From 1.5 to set: {1.5}
+From 1.5 to numpy.ndarray: 1.5
+From 1.5 to list: [&#39;1.5&#39;]
+From 1.5 to tuple: (&#39;1.5&#39;,)
+From 1.5 to dict: {&#39;1.5&#39;: &#39;1.5&#39;}
+From 1.5 to set: {&#39;1.5&#39;}
+From 1.5 to numpy.ndarray: 1.5
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">],(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">),{</span><span class="mi">0</span><span class="p">:</span><span class="mf">0.1</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">},</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">])]:</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">Caster</span><span class="o">.</span><span class="n">noniterables</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;From </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1"> to </span><span class="si">{</span><span class="n">typestr</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">cast</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">t</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>From [0, 0.1] to NoneType: [0, 0.1]
+From [0, 0.1] to int: [0, 0]
 From [0, 0.1] to float: [0.0, 0.1]
-From [0, 0.1] to list: [0, 0.1]
-From [0, 0.1] to tuple: (0, 0.1)
-From [0, 0.1] to str: [0, 0.1]
-From [0, 0.1] to dict: [0, 0.1]
-From [0, 0.1] to set: {0, 0.1}
-From [0, 0.1] to numpy.ndarray: [0.  0.1]
-From (0, 0.1) to int: (0, 0)
-From (0, 0.1) to float: (0.0, 0.1)
-From (0, 0.1) to list: [0, 0.1]
-From (0, 0.1) to tuple: (0, 0.1)
-From (0, 0.1) to str: (0, 0.1)
-From (0, 0.1) to dict: (0, 0.1)
-From (0, 0.1) to set: {0, 0.1}
-From (0, 0.1) to numpy.ndarray: [0.  0.1]
-From 01 to int: [0, 1]
-From 01 to float: [0.0, 1.0]
-From 01 to list: [&#39;0&#39;, &#39;1&#39;]
-From 01 to tuple: (&#39;0&#39;, &#39;1&#39;)
-From 01 to str: 01
-From 01 to dict: 01
-From 01 to set: {&#39;0&#39;, &#39;1&#39;}
-From 01 to numpy.ndarray: 01
+From [0, 0.1] to str: [&#39;0&#39;, &#39;0.1&#39;]
+From (0, 0.1) to NoneType: [0, 0.1]
+From (0, 0.1) to int: [0, 0]
+From (0, 0.1) to float: [0.0, 0.1]
+From (0, 0.1) to str: [&#39;0&#39;, &#39;0.1&#39;]
+From {0: 0.1} to NoneType: {0: 0.1}
 From {0: 0.1} to int: {0: 0}
 From {0: 0.1} to float: {0: 0.1}
-From {0: 0.1} to list: [0]
-From {0: 0.1} to tuple: (0,)
-From {0: 0.1} to str: {0: 0.1}
+From {0: 0.1} to str: {0: &#39;0.1&#39;}
+From {0, 0.1} to NoneType: [0, 0.1]
+From {0, 0.1} to int: [0, 0]
+From {0, 0.1} to float: [0.0, 0.1]
+From {0, 0.1} to str: [&#39;0&#39;, &#39;0.1&#39;]
+From [0.  0.1] to NoneType: [0.0, 0.1]
+From [0.  0.1] to int: [0, 0]
+From [0.  0.1] to float: [0.0, 0.1]
+From [0.  0.1] to str: [&#39;0.0&#39;, &#39;0.1&#39;]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">],(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">),{</span><span class="mi">0</span><span class="p">:</span><span class="mf">0.1</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">},</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">])]:</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">Caster</span><span class="o">.</span><span class="n">iterables</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;From </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1"> to </span><span class="si">{</span><span class="n">typestr</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">cast</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">t</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>From [0, 0.1] to list: [0, 0.1]
+From [0, 0.1] to tuple: (0, 0.1)
+From [0, 0.1] to dict: {0: 0, 1: 0.1}
+From [0, 0.1] to set: {0, 0.1}
+From [0, 0.1] to numpy.ndarray: [0.  0.1]
+From (0, 0.1) to list: [0, 0.1]
+From (0, 0.1) to tuple: (0, 0.1)
+From (0, 0.1) to dict: {0: 0, 1: 0.1}
+From (0, 0.1) to set: {0, 0.1}
+From (0, 0.1) to numpy.ndarray: [0.  0.1]
+From {0: 0.1} to list: [(0, 0.1)]
+From {0: 0.1} to tuple: ((0, 0.1),)
 From {0: 0.1} to dict: {0: 0.1}
-From {0: 0.1} to set: {0}
-From {0: 0.1} to numpy.ndarray: {0: 0.1}
-From {0, 0.1} to int: {0}
-From {0, 0.1} to float: {0.0, 0.1}
+From {0: 0.1} to set: {(0, 0.1)}
+From {0: 0.1} to numpy.ndarray: dict_items([(0, 0.1)])
 From {0, 0.1} to list: [0, 0.1]
 From {0, 0.1} to tuple: (0, 0.1)
-From {0, 0.1} to str: {0, 0.1}
-From {0, 0.1} to dict: {0, 0.1}
+From {0, 0.1} to dict: {0: 0, 1: 0.1}
 From {0, 0.1} to set: {0, 0.1}
 From {0, 0.1} to numpy.ndarray: {0, 0.1}
-From [0.  0.1] to int: [0 0]
-From [0.  0.1] to float: [0.  0.1]
 From [0.  0.1] to list: [0.0, 0.1]
 From [0.  0.1] to tuple: (0.0, 0.1)
-From [0.  0.1] to str: [0.  0.1]
-From [0.  0.1] to dict: [0.  0.1]
+From [0.  0.1] to dict: {0: 0.0, 1: 0.1}
 From [0.  0.1] to set: {0.0, 0.1}
 From [0.  0.1] to numpy.ndarray: [0.  0.1]
 </pre>
@@ -792,14 +1119,14 @@ From [0.  0.1] to numpy.ndarray: [0.  0.1]
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This extends the desired behavior of typecasting for iterables and noniterables.</p>
+<p>In conclusion, <a href="/sidis/conversion.html#cast"><code>cast</code></a> can sequentially transition python objects between iterable and noniterable datatypes or any other datatype, with the fallback of using the default python conversions or simply returning the object, and can be updated as a dictionary of callables to include new typecasting behavior.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Conversions">Conversions<a class="anchor-link" href="#Conversions"> </a></h1><p>Here we present conversions between common datatypes (like numbers to binary arrays).</p>
+<h2 id="Data-Conversions">Data Conversions<a class="anchor-link" href="#Data-Conversions"> </a></h2><p>Here we present useful data type conversion, like decimal numbers to binary arrays, culminating in the <a href="/sidis/conversion.html#convert"><code>convert</code></a> function. We also give various helpers such as <a href="/sidis/conversion.html#RNG"><code>RNG</code></a> and analytic continuation of logic such as <a href="/sidis/conversion.html#XOR"><code>XOR</code></a>.</p>
 
 </div>
 </div>
@@ -822,13 +1149,36 @@ From [0.  0.1] to numpy.ndarray: [0.  0.1]
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="pad" class="doc_header"><code>pad</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L91" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>pad</code>(<strong><code>data</code></strong>:<code>Union</code>[<code>ndarray</code>, <code>list</code>], <strong><code>bits</code></strong>:<code>Optional</code>[<code>int</code>]=<em><code>None</code></em>, <strong><code>to</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>]=<em><code>int</code></em>)</p>
+<h4 id="pad" class="doc_header"><code>pad</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L156" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>pad</code>(<strong><code>data</code></strong>:<code>Union</code>[<code>ndarray</code>, <code>list</code>], <strong><code>bits</code></strong>:<code>Optional</code>[<code>int</code>]=<em><code>None</code></em>, <strong><code>to</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>]=<em><code>int</code></em>)</p>
 </blockquote>
 <p>Pads an array with zeros, up to a length of <code>bits</code>.</p>
 
 </div>
 
 </div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pad</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">bits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">to</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
 
 <div class="output_area">
 
@@ -864,7 +1214,7 @@ From [0.  0.1] to numpy.ndarray: [0.  0.1]
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="fillar" class="doc_header"><code>fillar</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L106" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>fillar</code>(<strong><code>x</code></strong>:<code>list</code>, <strong><code>fillwith</code></strong>=<em><code>nan</code></em>, <strong><code>mask</code></strong>=<em><code>True</code></em>)</p>
+<h4 id="fill" class="doc_header"><code>fill</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L171" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>fill</code>(<strong><code>x</code></strong>:<code>list</code>, <strong><code>fillwith</code></strong>=<em><code>nan</code></em>, <strong><code>mask</code></strong>=<em><code>True</code></em>)</p>
 </blockquote>
 <p>Turn uneven nested lists <code>x</code> into arrays <code>y</code> substituting
 missing entries using <code>fillwith</code> and optionally masking.</p>
@@ -872,6 +1222,29 @@ missing entries using <code>fillwith</code> and optionally masking.</p>
 </div>
 
 </div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fill</span><span class="p">([[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]],</span><span class="n">fillwith</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">mask</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
 
 <div class="output_area">
 
@@ -897,7 +1270,7 @@ missing entries using <code>fillwith</code> and optionally masking.</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fillar</span><span class="p">([[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]],</span><span class="n">fillwith</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">mask</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fill</span><span class="p">([[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]],</span><span class="n">fillwith</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">mask</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -946,13 +1319,37 @@ missing entries using <code>fillwith</code> and optionally masking.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="nbits" class="doc_header"><code>nbits</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L121" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>nbits</code>(<strong><code>x</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>list</code>, <code>ndarray</code>])</p>
+<h4 id="nbits" class="doc_header"><code>nbits</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L186" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>nbits</code>(<strong><code>x</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>list</code>, <code>ndarray</code>])</p>
 </blockquote>
 <p>Return the number of bits required to represent the input <code>x</code>.</p>
 
 </div>
 
 </div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">11</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;i=</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">, nbits(</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">)=</span><span class="si">{</span><span class="n">nbits</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
 
 <div class="output_area">
 
@@ -996,13 +1393,36 @@ i=10, nbits(10)=4
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="rint" class="doc_header"><code>rint</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L133" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>rint</code>(<strong><code>x</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>list</code>, <code>ndarray</code>])</p>
+<h4 id="rint" class="doc_header"><code>rint</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L198" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>rint</code>(<strong><code>x</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>list</code>, <code>ndarray</code>])</p>
 </blockquote>
 <p>Typecast rounding to np arrays.</p>
 
 </div>
 
 </div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rint</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.51</span><span class="p">]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
 
 <div class="output_area">
 
@@ -1038,7 +1458,7 @@ i=10, nbits(10)=4
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="RNG" class="doc_header"><code>class</code> <code>RNG</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L145" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>RNG</code>(<strong><code>seed</code></strong>:<code>Optional</code>[<code>int</code>]=<em><code>0</code></em>)</p>
+<h2 id="RNG" class="doc_header"><code>class</code> <code>RNG</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L210" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>RNG</code>(<strong><code>seed</code></strong>:<code>Optional</code>[<code>int</code>]=<em><code>0</code></em>)</p>
 </blockquote>
 <p>Globally stable random number generator. Initialized with fixed <code>seed</code>.
 Contains <code>normal</code> and <code>random</code> methods, each with an <code>absval</code> and <code>asint</code> argument,
@@ -1051,6 +1471,31 @@ which convert to positive values and round to integers respectively.</p>
 </div>
 
 </div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rng</span><span class="o">=</span><span class="n">RNG</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">shape</span><span class="o">=</span><span class="kc">None</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
 
 <div class="output_area">
 
@@ -1085,7 +1530,7 @@ which convert to positive values and round to integers respectively.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="num2ar" class="doc_header"><code>num2ar</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L194" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>num2ar</code>(<strong><code>x</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>], <strong><code>bits</code></strong>:<code>Optional</code>[<code>int</code>]=<em><code>None</code></em>, <strong><code>to</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>]=<em><code>int</code></em>)</p>
+<h4 id="num2ar" class="doc_header"><code>num2ar</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L259" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>num2ar</code>(<strong><code>x</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>], <strong><code>bits</code></strong>:<code>Optional</code>[<code>int</code>]=<em><code>None</code></em>, <strong><code>to</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>]=<em><code>int</code></em>)</p>
 </blockquote>
 <p>Converts decimal number <code>x</code> to array <code>a</code> zero-padded with <code>bits</code>.</p>
 
@@ -1093,20 +1538,44 @@ which convert to positive values and round to integers respectively.</p>
 
 </div>
 
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">11</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;i=</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">, num2ar(</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">)=</span><span class="si">{</span><span class="n">num2ar</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>i=0, num2ar(0)=[0]
 i=1, num2ar(1)=[1]
-i=2, num2ar(2)=[1 0]
-i=3, num2ar(3)=[1 1]
-i=4, num2ar(4)=[1 0 0]
-i=5, num2ar(5)=[1 0 1]
-i=6, num2ar(6)=[1 1 0]
-i=7, num2ar(7)=[1 1 1]
-i=8, num2ar(8)=[1 0 0 0]
-i=9, num2ar(9)=[1 0 0 1]
-i=10, num2ar(10)=[1 0 1 0]
+i=2, num2ar(2)=[1, 0]
+i=3, num2ar(3)=[1, 1]
+i=4, num2ar(4)=[1, 0, 0]
+i=5, num2ar(5)=[1, 0, 1]
+i=6, num2ar(6)=[1, 1, 0]
+i=7, num2ar(7)=[1, 1, 1]
+i=8, num2ar(8)=[1, 0, 0, 0]
+i=9, num2ar(9)=[1, 0, 0, 1]
+i=10, num2ar(10)=[1, 0, 1, 0]
 </pre>
 </div>
 </div>
@@ -1139,7 +1608,7 @@ i=10, num2ar(10)=[1 0 1 0]
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>array([0., 1., 0., 1., 0.])</pre>
+<pre>[0.0, 1.0, 0.0, 1.0, 0.0]</pre>
 </div>
 
 </div>
@@ -1168,7 +1637,7 @@ i=10, num2ar(10)=[1 0 1 0]
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="ar2num" class="doc_header"><code>ar2num</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L209" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ar2num</code>(<strong><code>a</code></strong>:<code>Union</code>[<code>list</code>, <code>ndarray</code>], <strong><code>to</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>]=<em><code>int</code></em>)</p>
+<h4 id="ar2num" class="doc_header"><code>ar2num</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L274" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ar2num</code>(<strong><code>a</code></strong>:<code>Union</code>[<code>list</code>, <code>ndarray</code>], <strong><code>to</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>]=<em><code>int</code></em>)</p>
 </blockquote>
 <p>Converts array <code>a</code> to decimal number <code>x</code>.</p>
 
@@ -1176,13 +1645,37 @@ i=10, num2ar(10)=[1 0 1 0]
 
 </div>
 
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;a=</span><span class="si">{</span><span class="n">num2ar</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="si">}</span><span class="s2">, ar2num(a)=</span><span class="si">{</span><span class="n">ar2num</span><span class="p">(</span><span class="n">num2ar</span><span class="p">(</span><span class="n">i</span><span class="p">))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>a=[0], ar2num(a)=0
 a=[1], ar2num(a)=1
-a=[1 0], ar2num(a)=2
-a=[1 1], ar2num(a)=3
+a=[1, 0], ar2num(a)=2
+a=[1, 1], ar2num(a)=3
 </pre>
 </div>
 </div>
@@ -1211,7 +1704,7 @@ a=[1 1], ar2num(a)=3
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="ar2hex" class="doc_header"><code>ar2hex</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L222" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ar2hex</code>(<strong><code>a</code></strong>:<code>Union</code>[<code>list</code>, <code>ndarray</code>], <strong><code>bits</code></strong>:<code>Optional</code>[<code>int</code>]=<em><code>None</code></em>, <strong><code>prefix</code></strong>:<code>bool</code>=<em><code>True</code></em>)</p>
+<h4 id="ar2hex" class="doc_header"><code>ar2hex</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L287" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ar2hex</code>(<strong><code>a</code></strong>:<code>Union</code>[<code>list</code>, <code>ndarray</code>], <strong><code>bits</code></strong>:<code>Optional</code>[<code>int</code>]=<em><code>None</code></em>, <strong><code>prefix</code></strong>:<code>bool</code>=<em><code>True</code></em>)</p>
 </blockquote>
 <p>Converts binary array to hex string
 in:
@@ -1222,6 +1715,29 @@ out:
 </div>
 
 </div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ar2hex</span><span class="p">(</span><span class="n">num2ar</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
 
 <div class="output_area">
 
@@ -1290,7 +1806,7 @@ out:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="hex2ar" class="doc_header"><code>hex2ar</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L240" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>hex2ar</code>(<strong><code>h</code></strong>:<code>str</code>, <strong><code>bits</code></strong>:<code>Optional</code>[<code>int</code>]=<em><code>None</code></em>, <strong><code>to</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>]=<em><code>int</code></em>)</p>
+<h4 id="hex2ar" class="doc_header"><code>hex2ar</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L305" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>hex2ar</code>(<strong><code>h</code></strong>:<code>str</code>, <strong><code>bits</code></strong>:<code>Optional</code>[<code>int</code>]=<em><code>None</code></em>, <strong><code>to</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>]=<em><code>int</code></em>)</p>
 </blockquote>
 <p>Converts a hex string <code>h</code> into an array <code>a</code> padded with <code>bits</code> and elements of <code>astype</code>.</p>
 
@@ -1298,12 +1814,35 @@ out:
 
 </div>
 
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">hex2ar</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
 <div class="output_area">
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>array([1, 0, 1, 0])</pre>
+<pre>[1, 0, 1, 0]</pre>
 </div>
 
 </div>
@@ -1336,7 +1875,7 @@ out:
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>array([1, 0, 1, 0])</pre>
+<pre>[1, 0, 1, 0]</pre>
 </div>
 
 </div>
@@ -1365,13 +1904,36 @@ out:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="str2ar" class="doc_header"><code>str2ar</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L251" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>str2ar</code>(<strong><code>s</code></strong>:<code>str</code>, <strong><code>to</code></strong>:<code>Union</code>[<code>list</code>, <code>ndarray</code>]=<em><code>ndarray</code></em>)</p>
+<h4 id="str2ar" class="doc_header"><code>str2ar</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L316" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>str2ar</code>(<strong><code>s</code></strong>:<code>str</code>, <strong><code>to</code></strong>:<code>Union</code>[<code>list</code>, <code>ndarray</code>]=<em><code>ndarray</code></em>)</p>
 </blockquote>
 <p>Converts an input string <code>s</code> into an array or list <code>a</code> as per <code>astype</code>.</p>
 
 </div>
 
 </div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">str2ar</span><span class="p">(</span><span class="s1">&#39;111&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
 
 <div class="output_area">
 
@@ -1407,13 +1969,36 @@ out:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="ar2str" class="doc_header"><code>ar2str</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L260" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ar2str</code>(<strong><code>a</code></strong>:<code>Union</code>[<code>list</code>, <code>ndarray</code>], <strong><code>to</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>list</code>, <code>tuple</code>, <code>str</code>, <code>dict</code>, <code>set</code>, <code>ndarray</code>]=<em><code>None</code></em>)</p>
+<h4 id="ar2str" class="doc_header"><code>ar2str</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L325" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ar2str</code>(<strong><code>a</code></strong>:<code>Union</code>[<code>list</code>, <code>ndarray</code>], <strong><code>to</code></strong>:<code>Union</code>[<code>NoneType</code>, <code>int</code>, <code>float</code>, <code>list</code>, <code>tuple</code>, <code>str</code>, <code>dict</code>, <code>set</code>, <code>ndarray</code>]=<em><code>None</code></em>)</p>
 </blockquote>
 <p>Converts an input array <code>a</code> into a string <code>s</code>.</p>
 
 </div>
 
 </div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ar2str</span><span class="p">([</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">1.3</span><span class="p">],</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
 
 <div class="output_area">
 
@@ -1442,7 +2027,7 @@ out:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="COPY" class="doc_header"><code>COPY</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L268" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>COPY</code>(<strong><code>x</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>], <strong><code>to</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>]=<em><code>int</code></em>)</p>
+<h4 id="COPY" class="doc_header"><code>COPY</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L333" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>COPY</code>(<strong><code>x</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>])</p>
 </blockquote>
 <p>Simply returns <code>x</code>.</p>
 
@@ -1467,32 +2052,7 @@ out:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="OR" class="doc_header"><code>OR</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L290" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>OR</code>(<strong><code>x</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>], <strong><code>y</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>], <strong><code>to</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>]=<em><code>int</code></em>)</p>
-</blockquote>
-<p>Return logical OR of <code>x</code> and <code>y</code>. See DeMorgan's Laws.</p>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="Exclusive_OR" class="doc_header"><code>Exclusive_OR</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L298" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>Exclusive_OR</code>(<strong><code>x</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>], <strong><code>y</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>], <strong><code>to</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>]=<em><code>int</code></em>)</p>
+<h4 id="Exclusive_OR" class="doc_header"><code>Exclusive_OR</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L359" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>Exclusive_OR</code>(<strong><code>x</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>], <strong><code>y</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>])</p>
 </blockquote>
 <p>Return logical exclusive OR of <code>x</code> and <code>y</code>. See DeMorgan's Laws.</p>
 
@@ -1524,7 +2084,7 @@ out:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="NOT" class="doc_header"><code>NOT</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L275" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>NOT</code>(<strong><code>x</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>], <strong><code>to</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>]=<em><code>int</code></em>)</p>
+<h4 id="NOT" class="doc_header"><code>NOT</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L339" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>NOT</code>(<strong><code>x</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>])</p>
 </blockquote>
 <p>Return conjugate of <code>x</code>.</p>
 
@@ -1532,13 +2092,61 @@ out:
 
 </div>
 
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">NOT</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
 <div class="output_area">
 
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>0
-</pre>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0</pre>
+</div>
+
+</div>
+
 </div>
 </div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">NOT</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
 
 <div class="output_area">
 
@@ -1567,7 +2175,7 @@ out:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="AND" class="doc_header"><code>AND</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L282" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>AND</code>(<strong><code>x</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>], <strong><code>y</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>], <strong><code>to</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>]=<em><code>int</code></em>)</p>
+<h4 id="AND" class="doc_header"><code>AND</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L345" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>AND</code>(<strong><code>x</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>], <strong><code>y</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>])</p>
 </blockquote>
 <p>Return logical AND of <code>x</code> and <code>y</code>.</p>
 
@@ -1575,13 +2183,61 @@ out:
 
 </div>
 
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">AND</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
 <div class="output_area">
 
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>1
-</pre>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1</pre>
+</div>
+
+</div>
+
 </div>
 </div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">AND</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
 
 <div class="output_area">
 
@@ -1589,6 +2245,221 @@ out:
 
 <div class="output_text output_subarea output_execute_result">
 <pre>0.5</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="OR" class="doc_header"><code>OR</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L352" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>OR</code>(<strong><code>x</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>], <strong><code>y</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>])</p>
+</blockquote>
+<p>Return logical OR of <code>x</code> and <code>y</code>. See DeMorgan's Laws.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">OR</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">OR</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.75</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="XOR" class="doc_header"><code>XOR</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L366" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>XOR</code>(<strong>*<code>args</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>list</code>, <code>ndarray</code>])</p>
+</blockquote>
+<p>Arbitrary input XOR using recursiveness.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">XOR</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">XOR</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">XOR</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.4384765625</pre>
 </div>
 
 </div>
@@ -1647,6 +2518,13 @@ XOR(1, 1)=0
     
 <div class="cell border-box-sizing code_cell rendered">
 
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
 <div class="output_wrapper">
 <div class="output">
 
@@ -1654,20 +2532,10 @@ XOR(1, 1)=0
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="XOR" class="doc_header"><code>XOR</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L306" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>XOR</code>(<strong>*<code>args</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>list</code>, <code>ndarray</code>], <strong><code>to</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>]=<em><code>int</code></em>)</p>
+<h4 id="ar2gr" class="doc_header"><code>ar2gr</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L376" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ar2gr</code>(<strong><code>binary</code></strong>:<code>Union</code>[<code>list</code>, <code>ndarray</code>], <strong><code>to</code></strong>:<code>Union</code>[<code>list</code>, <code>ndarray</code>]=<em><code>ndarray</code></em>)</p>
 </blockquote>
-<p>Arbitrary input XOR using recursiveness.</p>
+<p>Converts an input binary array to graycode.</p>
 
-</div>
-
-</div>
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>1</pre>
 </div>
 
 </div>
@@ -1685,7 +2553,7 @@ XOR(1, 1)=0
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">XOR</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.6</span><span class="p">,</span><span class="n">to</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ar2gr</span><span class="p">(</span><span class="n">num2ar</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -1694,48 +2562,6 @@ XOR(1, 1)=0
 
 <div class="output_wrapper">
 <div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>0.40709488639999997</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="ar2gr" class="doc_header"><code>ar2gr</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L317" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ar2gr</code>(<strong><code>binary</code></strong>:<code>Union</code>[<code>list</code>, <code>ndarray</code>], <strong><code>to</code></strong>:<code>Union</code>[<code>list</code>, <code>ndarray</code>]=<em><code>ndarray</code></em>)</p>
-</blockquote>
-<p>Converts an input binary array to graycode.</p>
-
-</div>
-
-</div>
 
 <div class="output_area">
 
@@ -1771,13 +2597,36 @@ XOR(1, 1)=0
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="gr2ar" class="doc_header"><code>gr2ar</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L330" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>gr2ar</code>(<strong><code>gray</code></strong>:<code>Union</code>[<code>list</code>, <code>ndarray</code>], <strong><code>to</code></strong>:<code>Union</code>[<code>list</code>, <code>ndarray</code>]=<em><code>ndarray</code></em>)</p>
+<h4 id="gr2ar" class="doc_header"><code>gr2ar</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L389" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>gr2ar</code>(<strong><code>gray</code></strong>:<code>Union</code>[<code>list</code>, <code>ndarray</code>], <strong><code>to</code></strong>:<code>Union</code>[<code>list</code>, <code>ndarray</code>]=<em><code>ndarray</code></em>)</p>
 </blockquote>
 <p>Converts a gray-code array into binary.</p>
 
 </div>
 
 </div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">gr2ar</span><span class="p">(</span><span class="n">ar2gr</span><span class="p">(</span><span class="n">num2ar</span><span class="p">(</span><span class="mi">10</span><span class="p">)))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
 
 <div class="output_area">
 
@@ -1813,13 +2662,37 @@ XOR(1, 1)=0
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="num2gr" class="doc_header"><code>num2gr</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L346" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>num2gr</code>(<strong><code>x</code></strong>:<code>int</code>, <strong><code>to</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>list</code>, <code>tuple</code>, <code>str</code>, <code>dict</code>, <code>set</code>, <code>ndarray</code>]=<em><code>None</code></em>)</p>
+<h4 id="num2gr" class="doc_header"><code>num2gr</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L405" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>num2gr</code>(<strong><code>x</code></strong>:<code>int</code>, <strong><code>to</code></strong>:<code>Union</code>[<code>NoneType</code>, <code>int</code>, <code>float</code>, <code>list</code>, <code>tuple</code>, <code>str</code>, <code>dict</code>, <code>set</code>, <code>ndarray</code>]=<em><code>None</code></em>)</p>
 </blockquote>
 <p>Converts decimal number <code>x</code> to equivalent gray-code number.</p>
 
 </div>
 
 </div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">11</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;i=</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">, num2gr(i)=</span><span class="si">{</span><span class="n">num2gr</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
 
 <div class="output_area">
 
@@ -1863,7 +2736,7 @@ i=10, num2gr(i)=15
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="convert" class="doc_header"><code>convert</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L353" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>convert</code>(<strong><code>obj</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>list</code>, <code>hex</code>, <code>str</code>, <code>ndarray</code>], <strong><code>to</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>list</code>, <code>hex</code>, <code>str</code>, <code>ndarray</code>]=<em><code>ndarray</code></em>, <strong><code>bits</code></strong>:<code>Optional</code>[<code>int</code>]=<em><code>None</code></em>, <strong><code>astype</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>list</code>, <code>ndarray</code>]=<em><code>int</code></em>, <strong><code>gray</code></strong>:<code>bool</code>=<em><code>False</code></em>)</p>
+<h4 id="convert" class="doc_header"><code>convert</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L412" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>convert</code>(<strong><code>obj</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>list</code>, <code>hex</code>, <code>str</code>, <code>ndarray</code>], <strong><code>to</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>list</code>, <code>hex</code>, <code>str</code>, <code>ndarray</code>]=<em><code>ndarray</code></em>, <strong><code>bits</code></strong>:<code>Optional</code>[<code>int</code>]=<em><code>None</code></em>, <strong><code>astype</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>list</code>, <code>ndarray</code>]=<em><code>int</code></em>, <strong><code>gray</code></strong>:<code>bool</code>=<em><code>False</code></em>)</p>
 </blockquote>
 <p>Converts an input <code>obj</code> into an output of type <code>to</code>, padding with <code>bits</code>.
 Internally converts <code>obj</code> to np.ndarray with elements of dtype <code>astype</code>,

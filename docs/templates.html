@@ -64,138 +64,9 @@ C:\Anaconda3\lib\site-packages\numpy\.libs\libopenblas.PYQHXLVVQ7VESDPUVUADXEVJO
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="replace" class="doc_header"><code>replace</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/templates.py#L12" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>replace</code>(<strong><code>l</code></strong>, <strong>**<code>kwargs</code></strong>)</p>
-</blockquote>
-<p>Replace the line <code>l</code> in <code>txt</code> with any occurances of the dictionaried values.</p>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="txt2lst" class="doc_header"><code>txt2lst</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/templates.py#L18" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>txt2lst</code>(<strong><code>txt</code></strong>)</p>
-</blockquote>
-<p>Remove all newlines <code>` and empty strings `` from the template</code>txt`.</p>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
 <h4 id="lst2txt" class="doc_header"><code>lst2txt</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/templates.py#L22" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lst2txt</code>(<strong><code>ltxt</code></strong>)</p>
 </blockquote>
 <p>Concatenate a list of text <code>ltxt</code> into a string separated by newlines.</p>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="ZIP" class="doc_header"><code>ZIP</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/templates.py#L26" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ZIP</code>(<strong><code>txt</code></strong>, <strong><code>_iter</code></strong>, <strong>*<code>lambdas</code></strong>, <strong><code>as_txt</code></strong>=<em><code>False</code></em>)</p>
-</blockquote>
-<p>Loop over the iterable <code>_iter</code> and format <code>txt</code> in order of the <code>lambdas</code>.
-If <code>_iter</code> is an int, it is treated as <code>range(_iter)</code>, and if it is a tuple,
-it is treated as <code>np.ndindex(_iter)</code>.</p>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="getEvals" class="doc_header"><code>getEvals</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/templates.py#L40" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>getEvals</code>(<strong><code>replaced_txt</code></strong>, <strong><code>funcs</code></strong>=<em><code>['ZIP']</code></em>)</p>
-</blockquote>
-<p>Obtain a tuple of containing the <code>funcs</code>, the text they format, their arguments,
-and their line index in the template <code>txt</code>.</p>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="filltxt" class="doc_header"><code>filltxt</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/templates.py#L52" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>filltxt</code>(<strong><code>txt</code></strong>, <strong><code>funcs</code></strong>=<em><code>['ZIP']</code></em>, <strong>**<code>kwargs</code></strong>)</p>
-</blockquote>
-<p>Take a template <code>txt</code>, replace all <code>kwargs</code> via <code>Replace</code>, then evaluate the <code>funcs</code>
-on the surrounding text using <code>GetEvals</code>.</p>
 
 </div>
 
@@ -232,7 +103,7 @@ on the surrounding text using <code>GetEvals</code>.</p>
 
 <pre><code>funcs=[[`ZIP`](/sidis/templates.html#ZIP)] (list of callable) : the keyword function to map over the text it's embedded in
 
-filler=`fill` (callable) : method of filling the text
+filler=[`fill`](/sidis/conversion.html#fill) (callable) : method of filling the text
 
 
 </code></pre>
@@ -258,7 +129,7 @@ filler=`fill` (callable) : method of filling the text
 
 `out`: write/append `txt`, which defaults to filled data `str`, to `fname`.
 
-`fill`: fills the template by replacing `kwargs` and evaluating `funcs`.</code></pre>
+[`fill`](/sidis/conversion.html#fill): fills the template by replacing `kwargs` and evaluating `funcs`.</code></pre>
 
 </div>
 
@@ -328,6 +199,16 @@ And this one is iterated: 10 </pre>
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>What happened? When calling <code>t.fill</code>, <code>_variable</code> was replaced with <code>2</code> everywhere it appeared in the template, similarly with <code>_function</code>. This includes after the custom function <a href="/sidis/templates.html#ZIP"><code>ZIP</code></a>, where they appear as arguments.</p>
+<p>After this substitution, <a href="/sidis/templates.html#ZIP"><code>ZIP</code></a> formatted the text preceding it (<code>{0}</code>) with the result of <code>_function(_variable)</code>, i.e, <code>format("{0}",(lambda i:i*10)(2))</code>.</p>
+<p>In the next line, <a href="/sidis/templates.html#ZIP"><code>ZIP</code></a> repeatedly formatted the text preceding it (<code>{0}</code>) with the result of <code>_function(_iter)</code>, i.e, <code>'\n'.join([format("{0}",(lambda i:i*10)(j)) for j in range(2)])</code>.</p>
+<p>Before we go into more detail on these functions, let's examine the template object:</p>
+
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -368,6 +249,314 @@ And this one is iterated: 10 </pre>
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>temp</code> attribute stores the un-formatted text handed to <a href="/sidis/templates.html#Template"><code>Template</code></a>. The <code>plate</code> attribute stores the formatted lines as a list of strings. The object also stores any kwargs as attrs. Finally, <code>text()</code> attribute concatenates the formatted text into a string separated by newlines, and is used as the <code>__repr__</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's see how <a href="/sidis/templates.html#ZIP"><code>ZIP</code></a> works:</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="ZIP" class="doc_header"><code>ZIP</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/templates.py#L26" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ZIP</code>(<strong><code>txt</code></strong>, <strong><code>_iter</code></strong>, <strong>*<code>lambdas</code></strong>, <strong><code>as_txt</code></strong>=<em><code>False</code></em>)</p>
+</blockquote>
+<p>Loop over the iterable <code>_iter</code> and format <code>txt</code> in order of the <code>lambdas</code>.
+If <code>_iter</code> is an int, it is treated as <code>range(_iter)</code>, and if it is a tuple,
+it is treated as <code>np.ndindex(_iter)</code>.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ZIP</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{0}</span><span class="s1">&#39;</span><span class="p">,</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;0&#39;, &#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;, &#39;6&#39;, &#39;7&#39;, &#39;8&#39;, &#39;9&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When embedded in the <a href="/sidis/templates.html#Template"><code>Template</code></a>, <a href="/sidis/templates.html#ZIP"><code>ZIP</code></a> treats the text proceeding it as an iterable or a single-substitution, and any text after the <code>,</code> as a list of functions. These functions take the iterable as an argument, and format the text preceding <a href="/sidis/templates.html#ZIP"><code>ZIP</code></a> with their evaluation on the iterable. They do not need to be lambdas - any callable will do. This makes embedding <a href="/sidis/templates.html#ZIP"><code>ZIP</code></a> into other text documents a useful way to modularize the formatting of text, and automate code blocks in other languages which lack Python flexibility.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Other helper functions enabling this process are as follows:</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="replace" class="doc_header"><code>replace</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/templates.py#L12" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>replace</code>(<strong><code>l</code></strong>, <strong>**<code>kwargs</code></strong>)</p>
+</blockquote>
+<p>Replace the line <code>l</code> in <code>txt</code> with any occurances of the dictionaried values.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;result=</span><span class="si">{0}</span><span class="s1">; ZIP _myvar,lambda i:i*10&#39;&#39;&#39;</span><span class="p">,</span><span class="n">_myvar</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;result={0}; ZIP 2,lambda i:i*10&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="txt2lst" class="doc_header"><code>txt2lst</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/templates.py#L18" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>txt2lst</code>(<strong><code>txt</code></strong>)</p>
+</blockquote>
+<p>Remove all newlines <code>` and empty strings `` from the template</code>txt`.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">txt</span><span class="o">=</span><span class="n">txt2lst</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;var=_myvar</span>
+<span class="s1">result=</span><span class="si">{0}</span><span class="s1">; ZIP _myvar,lambda i:i*10</span>
+<span class="s1">&#39;&#39;&#39;</span><span class="p">)</span>
+<span class="n">txt</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;var=_myvar&#39;, &#39;result={0}; ZIP _myvar,lambda i:i*10&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="getEvals" class="doc_header"><code>getEvals</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/templates.py#L40" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>getEvals</code>(<strong><code>replaced_txt</code></strong>, <strong><code>funcs</code></strong>=<em><code>['ZIP']</code></em>)</p>
+</blockquote>
+<p>Obtain a tuple of containing the <code>funcs</code>, the text they format, their arguments,
+and their line index in the template <code>txt</code>.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">l</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">txt</span><span class="p">):</span>
+    <span class="n">txt</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">replace</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="n">_myvar</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">getEvals</span><span class="p">(</span><span class="n">txt</span><span class="p">,</span><span class="n">funcs</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ZIP&#39;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[(&#39;ZIP&#39;, [&#39;result={0}; &#39;, &#39; 2,lambda i:i*10&#39;], 1)]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Text blocks of this kind (<a href="/sidis/templates.html#ZIP"><code>ZIP</code></a>, follows by text to format, follows by arguments after comma) are extracted using <a href="/sidis/templates.html#filltxt"><code>filltxt</code></a>:</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="filltxt" class="doc_header"><code>filltxt</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/templates.py#L52" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>filltxt</code>(<strong><code>txt</code></strong>, <strong><code>funcs</code></strong>=<em><code>['ZIP']</code></em>, <strong>**<code>kwargs</code></strong>)</p>
+</blockquote>
+<p>Take a template <code>txt</code>, replace all <code>kwargs</code> via <code>Replace</code>, then evaluate the <code>funcs</code>
+on the surrounding text using <code>GetEvals</code>.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>These are then packaged into the <a href="/sidis/templates.html#Template"><code>Template</code></a> class, which we give another arbitrary example of here:</p>
+
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -475,6 +664,13 @@ we can append, too!</pre>
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Finally, a <a href="/sidis/templates.html#Template"><code>Template</code></a> will attempt to auto-load a file if the input is a filename, e.g <code>Template('template.txt')</code> will load the file <code>template.txt</code> if it exists in the current directory, and use that as the string to format.</p>
+
+</div>
+</div>
+</div>
 </div>
  
 

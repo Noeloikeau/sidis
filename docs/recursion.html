@@ -6,8 +6,8 @@ title: recursion
 keywords: fastai
 sidebar: home_sidebar
 
-summary: "This module contains recursive algorithms for accessing, sorting, and analyzing most python objects. The most powerful functions are `get`, `give`, and `sort`. Simple utils include `depth` and `flatten`."
-description: "This module contains recursive algorithms for accessing, sorting, and analyzing most python objects. The most powerful functions are `get`, `give`, and `sort`. Simple utils include `depth` and `flatten`."
+summary: "This module contains recursive algorithms for accessing, sorting, and analyzing most python objects. The most powerful functions are `get`, `give`, `sort`, and `maps`. Useful utils include `depth`, `flatten`, and `pipe`."
+description: "This module contains recursive algorithms for accessing, sorting, and analyzing most python objects. The most powerful functions are `get`, `give`, `sort`, and `maps`. Useful utils include `depth`, `flatten`, and `pipe`."
 nb_path: "02_recursion.ipynb"
 ---
 <!--
@@ -64,6 +64,25 @@ C:\Anaconda3\lib\site-packages\numpy\.libs\libopenblas.PYQHXLVVQ7VESDPUVUADXEVJO
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">depth</span><span class="p">(</span><span class="n">obj</span> <span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">dict</span><span class="p">,</span><span class="nb">list</span><span class="p">]):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Recursively sort the number of layers of a nested</span>
+<span class="sd">    list or dictionary `x`.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">dict</span> <span class="ow">and</span> <span class="n">obj</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="nb">max</span><span class="p">(</span><span class="n">depth</span><span class="p">(</span><span class="n">obj</span><span class="p">[</span><span class="n">a</span><span class="p">])</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">list</span> <span class="ow">and</span> <span class="n">obj</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="nb">max</span><span class="p">(</span><span class="n">depth</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">0</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
     {% endraw %}
@@ -182,7 +201,8 @@ list or dictionary <code>x</code>.</p>
 </blockquote>
 <p>Concatenate the nested input <code>obj</code> into an equivalent
 datastructure of depth 1. Uses the <code>parent_key</code> and <code>sep</code>
-arg to combine nested dictionary keys.</p>
+arg to combine nested dictionary keys.
+<a href="https://stackoverflow.com/questions/6027558/flatten-nested-dictionaries-compressing-keys">https://stackoverflow.com/questions/6027558/flatten-nested-dictionaries-compressing-keys</a></p>
 
 </div>
 
@@ -277,10 +297,11 @@ arg to combine nested dictionary keys.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="inflate" class="doc_header"><code>inflate</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/recursion.py#L59" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>inflate</code>(<strong><code>d</code></strong>:<code>dict</code>, <strong><code>sep</code></strong>=<em><code>','</code></em>)</p>
+<h4 id="unflatten" class="doc_header"><code>unflatten</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/recursion.py#L61" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>unflatten</code>(<strong><code>d</code></strong>:<code>dict</code>, <strong><code>sep</code></strong>=<em><code>','</code></em>)</p>
 </blockquote>
 <p>Un-flatten a flattened nested dictionary <code>d</code> with
-concatenated key separation <code>sep</code>.</p>
+concatenated key separation <code>sep</code>.
+<a href="https://gist.github.com/fmder/494aaa2dd6f8c428cede">https://gist.github.com/fmder/494aaa2dd6f8c428cede</a></p>
 
 </div>
 
@@ -299,7 +320,7 @@ concatenated key separation <code>sep</code>.</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">inflate</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">unflatten</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -351,7 +372,7 @@ concatenated key separation <code>sep</code>.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get" class="doc_header"><code>get</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/recursion.py#L80" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get</code>(<strong><code>obj</code></strong>:<code>Union</code>[<code>object</code>, <code>dict</code>, <code>list</code>, <code>tuple</code>, <code>callable</code>, <code>ndarray</code>], <strong>*<code>args</code></strong>:<code>Union</code>[<code>NoneType</code>, <code>str</code>, <code>int</code>, <code>float</code>, <code>tuple</code>, <code>list</code>, <code>dict</code>], <strong><code>retnone</code></strong>:<code>bool</code>=<em><code>True</code></em>, <strong><code>call</code></strong>:<code>bool</code>=<em><code>False</code></em>, <strong>**<code>kwargs</code></strong>)</p>
+<h4 id="get" class="doc_header"><code>get</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/recursion.py#L83" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get</code>(<strong><code>obj</code></strong>:<code>Union</code>[<code>object</code>, <code>dict</code>, <code>list</code>, <code>tuple</code>, <code>callable</code>, <code>ndarray</code>], <strong>*<code>args</code></strong>:<code>Union</code>[<code>NoneType</code>, <code>str</code>, <code>int</code>, <code>float</code>, <code>tuple</code>, <code>list</code>, <code>dict</code>], <strong><code>retnone</code></strong>:<code>bool</code>=<em><code>True</code></em>, <strong><code>call</code></strong>:<code>bool</code>=<em><code>False</code></em>, <strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
 <p>Recursively accesses <code>obj</code> by the given ordered attributes/keys/indexes <code>args</code>.</p>
 <p>If <code>call</code>, the last accessed object will try to call any **kwargs.</p>
@@ -646,11 +667,83 @@ the object can't be accessed by any of the args; else, returns <code>obj</code>.
 <div class="output_markdown rendered_html output_subarea ">
 <h4 id="give" class="doc_header"><code>give</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/recursion.py#L122" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>give</code>(<strong><code>obj</code></strong>:<code>Union</code>[<code>object</code>, <code>dict</code>, <code>list</code>, <code>tuple</code>, <code>ndarray</code>], <strong>*<code>args</code></strong>:<code>Union</code>[<code>str</code>, <code>int</code>, <code>float</code>, <code>tuple</code>, <code>list</code>, <code>dict</code>], <strong>**<code>kwargs</code></strong>:<code>object</code>)</p>
 </blockquote>
-<p><a href="/sidis/recursion.html#get"><code>get</code></a>s the <code>args</code> level of <code>obj</code> and then inserts <code>kwargs</code> at the
-resulting position in the datastructure.</p>
+<p>Assign <code>args</code> element of <code>obj</code> to a value. If no <code>kwargs</code>,
+assign the last item of <code>args</code>. If <code>kwargs</code>, assign those.</p>
 
 </div>
 
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">give</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#give the 0th element of a the value 1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[1]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a href="/sidis/recursion.html#give"><code>give</code></a> only works on indexable objects:</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">give</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Not enough args or kwargs - require access to elements of obj.
+</pre>
+</div>
 </div>
 
 </div>
@@ -668,23 +761,7 @@ resulting position in the datastructure.</p>
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]])</span>
 <span class="n">give</span><span class="p">(</span><span class="n">a</span><span class="p">,(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">100</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="c1">#arrays must be accessed using tuples</span>
+<span class="n">a</span> <span class="c1">#arrays must be accessed using tuples</span>
 </pre></div>
 
     </div>
@@ -720,7 +797,49 @@ resulting position in the datastructure.</p>
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]]</span>
 <span class="n">give</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1">#lists must be accessed using sequences</span>
+<span class="n">a</span> <span class="c1">#lists must be accessed using sequences</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[[0, 1], [2, 100]]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a href="/sidis/recursion.html#give"><code>give</code></a> can be used to replace loops:</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="p">[</span><span class="n">give</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -733,7 +852,7 @@ resulting position in the datastructure.</p>
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[[0, 1], [2, 100]]
+<pre>[10]
 </pre>
 </div>
 </div>
@@ -857,9 +976,9 @@ resulting position in the datastructure.</p>
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>(0, 1) [0.96375687]
-(1, 2) [0.33663292]
-(2, 0) [0.74527498]
+<pre>(0, 1) [0.15324507]
+(1, 2) [0.15174739]
+(2, 0) [0.24494159]
 </pre>
 </div>
 </div>
@@ -926,7 +1045,7 @@ resulting position in the datastructure.</p>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[array([0.91497357]), array([0.26554639]), array([0.44001908])]</pre>
+<pre>[array([0.87330487]), array([0.23282991]), array([0.25588777])]</pre>
 </div>
 
 </div>
@@ -970,7 +1089,7 @@ resulting position in the datastructure.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="sort" class="doc_header"><code>sort</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/recursion.py#L181" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>sort</code>(<strong><code>obj</code></strong>:<code>Iterable</code>[<code>T_co</code>], <strong>*<code>args</code></strong>:<code>Union</code>[<code>NoneType</code>, <code>str</code>, <code>int</code>, <code>float</code>, <code>tuple</code>, <code>list</code>, <code>dict</code>], <strong><code>by</code></strong>:<code>Union</code>[<code>NoneType</code>, <code>object</code>, <code>dict</code>, <code>list</code>, <code>tuple</code>, <code>callable</code>, <code>ndarray</code>]=<em><code>None</code></em>, <strong><code>key</code></strong>:<code>callable</code>=<em><code>&lt;lambda&gt;</code></em>, <strong><code>sift</code></strong>:<code>callable</code>=<em><code>&lt;lambda&gt;</code></em>, <strong><code>reverse</code></strong>:<code>bool</code>=<em><code>True</code></em>)</p>
+<h4 id="sort" class="doc_header"><code>sort</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/recursion.py#L179" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>sort</code>(<strong><code>obj</code></strong>:<code>Iterable</code>[<code>T_co</code>], <strong>*<code>args</code></strong>:<code>Union</code>[<code>NoneType</code>, <code>str</code>, <code>int</code>, <code>float</code>, <code>tuple</code>, <code>list</code>, <code>dict</code>], <strong><code>by</code></strong>:<code>Union</code>[<code>NoneType</code>, <code>object</code>, <code>dict</code>, <code>list</code>, <code>tuple</code>, <code>callable</code>, <code>ndarray</code>]=<em><code>None</code></em>, <strong><code>key</code></strong>:<code>callable</code>=<em><code>&lt;lambda&gt;</code></em>, <strong><code>sift</code></strong>:<code>callable</code>=<em><code>&lt;lambda&gt;</code></em>, <strong><code>reverse</code></strong>:<code>bool</code>=<em><code>True</code></em>)</p>
 </blockquote>
 <p>Recursively sorts <code>obj</code> <code>by</code> <code>args</code> using <code>key</code>.</p>
 <p>Treats <code>obj</code> as an iterator and wraps <code>by</code> around the elements of <code>obj</code>,</p>
@@ -1079,7 +1198,7 @@ resulting position in the datastructure.</p>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[array([0.91497357]), array([0.44001908]), array([0.26554639])]</pre>
+<pre>[array([0.87330487]), array([0.25588777]), array([0.23282991])]</pre>
 </div>
 
 </div>
@@ -1112,7 +1231,7 @@ resulting position in the datastructure.</p>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[(0, array([0.91497357])), (2, array([0.44001908])), (1, array([0.26554639]))]</pre>
+<pre>[(0, array([0.87330487])), (2, array([0.25588777])), (1, array([0.23282991]))]</pre>
 </div>
 
 </div>
@@ -1145,7 +1264,7 @@ resulting position in the datastructure.</p>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[array([0.96375687]), array([0.74527498]), array([0.33663292])]</pre>
+<pre>[array([0.24494159]), array([0.15324507]), array([0.15174739])]</pre>
 </div>
 
 </div>
@@ -1178,9 +1297,9 @@ resulting position in the datastructure.</p>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[((0, 1), array([0.96375687])),
- ((2, 0), array([0.74527498])),
- ((1, 2), array([0.33663292]))]</pre>
+<pre>[((2, 0), array([0.24494159])),
+ ((0, 1), array([0.15324507])),
+ ((1, 2), array([0.15174739]))]</pre>
 </div>
 
 </div>
@@ -1268,6 +1387,415 @@ resulting position in the datastructure.</p>
 </div>
 </div>
 </div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="pipe" class="doc_header"><code>pipe</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/recursion.py#L223" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>pipe</code>(<strong><code>func</code></strong>, <strong><code>otype</code></strong>=<em><code>None</code></em>, <strong><code>ftype</code></strong>=<em><code>None</code></em>, <strong><code>cast</code></strong>=<em><code>&lt;sidis.conversion.Caster object at 0x000001877E0FF388&gt;</code></em>, <strong>*<code>args</code></strong>, <strong>**<code>kwargs</code></strong>)</p>
+</blockquote>
+<p>Pipelines the <code>func</code> to act on a later object.
+Returns a partially evaluated function over any <code>args</code> and <code>kwargs</code>.
+The object is casted to type <code>otype</code> before being evaluated.
+The output of the function is casted to <code>ftype</code></p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pipe</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">,</span><span class="n">otype</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span><span class="n">ftype</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mf">1.9</span><span class="p">)(</span><span class="mf">1.9</span><span class="p">)</span> <span class="c1">#convert the input to int, and the output to int</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Pipe is useful for converting function datatypes and passing them as arguments to other functions, as follows:</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">maps</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span>
+             <span class="o">*</span><span class="n">funcs</span><span class="p">,</span>
+             <span class="n">depth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+             <span class="n">zipit</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+             <span class="n">to</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+             <span class="n">squeeze</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Sequentially map `funcs` over the elements of `obj`, &quot;o&quot;.</span>
+<span class="sd">    The first `depth` number of funcs are mapped sequentially f(g(h(...(o)..)))=x.</span>
+<span class="sd">    The remaining number of funcs are mapped separately (u(x),v(x),...).</span>
+<span class="sd">    Use partial `funcs` to fill in all args but `obj` if other parameters needed.</span>
+<span class="sd">    If `keys`, return tuples of the object elements &quot;o&quot; along with map outputs.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">funcs</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">obj</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">obj</span><span class="o">=</span><span class="n">obj</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="s1">&#39;__iter__&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span><span class="o">!=</span><span class="s1">&#39;str&#39;</span> <span class="k">else</span> <span class="p">[</span><span class="n">obj</span><span class="p">]</span> <span class="c1">#asiter(obj)</span>
+        <span class="n">r</span><span class="o">=</span><span class="p">[</span><span class="n">o</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">]</span>
+        <span class="p">[[</span><span class="n">give</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">get</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">funcs</span><span class="p">[:</span><span class="n">depth</span><span class="p">]]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="p">))]</span>
+        <span class="p">[</span><span class="n">give</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">i</span><span class="p">,[</span><span class="n">get</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">funcs</span><span class="p">[</span><span class="n">depth</span><span class="p">:]])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="p">))]</span>
+        <span class="k">if</span> <span class="n">squeeze</span><span class="p">:</span>
+            <span class="n">r</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="o">.</span><span class="n">tolist</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="n">zipit</span><span class="p">:</span>
+            <span class="n">r</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="n">r</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">to</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="maps" class="doc_header"><code>maps</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/recursion.py#L238" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>maps</code>(<strong><code>obj</code></strong>, <strong>*<code>funcs</code></strong>, <strong><code>depth</code></strong>=<em><code>0</code></em>, <strong><code>zipit</code></strong>=<em><code>False</code></em>, <strong><code>to</code></strong>=<em><code>None</code></em>, <strong><code>squeeze</code></strong>=<em><code>True</code></em>)</p>
+</blockquote>
+<p>Sequentially map <code>funcs</code> over the elements of <code>obj</code>, "o".
+The first <code>depth</code> number of funcs are mapped sequentially f(g(h(...(o)..)))=x.
+The remaining number of funcs are mapped separately (u(x),v(x),...).
+Use partial <code>funcs</code> to fill in all args but <code>obj</code> if other parameters needed.
+If <code>keys</code>, return tuples of the object elements "o" along with map outputs.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">maps</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">depth</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c1">#add 1 separately to 0, three times</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[1, 1, 1]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">maps</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">depth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#add 1 to 0, then add 1 to that separately twice</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[2, 2]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">maps</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">depth</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#sequantially apply all functions</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>3</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">maps</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#apply functions over elements of iterable</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[[1, 1, 1], [2, 2, 2]]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">maps</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">depth</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[3, 4]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">maps</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">depth</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span><span class="n">zipit</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1">#zip the arguments with their func outputs</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[(0, 3), (1, 4)]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">maps</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">nodes</span><span class="p">,</span><span class="n">pipe</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">predecessors</span><span class="p">,</span><span class="kc">None</span><span class="p">,</span><span class="nb">list</span><span class="p">),</span><span class="n">pipe</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">successors</span><span class="p">,</span><span class="kc">None</span><span class="p">,</span><span class="nb">list</span><span class="p">),</span><span class="n">zipit</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1">#use a pipeline</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[(0, [[2, 0], [1, 0]]), (1, [[0], [2]]), (2, [[1], [0]])]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">maps</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">nodes</span><span class="p">,</span><span class="n">pipe</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">predecessors</span><span class="p">,</span><span class="kc">None</span><span class="p">,</span><span class="nb">list</span><span class="p">),</span><span class="n">pipe</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">successors</span><span class="p">,</span><span class="kc">None</span><span class="p">,</span><span class="nb">list</span><span class="p">),</span><span class="n">zipit</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">to</span><span class="o">=</span><span class="nb">dict</span><span class="p">)</span> <span class="c1">#convert the output</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{0: (0, [[2, 0], [1, 0]]), 1: (1, [[0], [2]]), 2: (2, [[1], [0]])}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
 </div>
  
 

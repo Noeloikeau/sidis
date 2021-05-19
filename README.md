@@ -1,10 +1,10 @@
-# *SIDIS* : **SI**mple **D**ata **I**nterface**S**
-> is a Python module for easy data science named after the early American polymath, William James Sidis. The modules here implement extensive recursion and typecasting beneath the hood in order to eliminate common programming tasks like converting and sorting data in slightly different ways. Documentation can be found on the respective pages in the docs website at https://noeloikeau.github.io/sidis/. Here we give a brief overview of some of the main functions.
+# ***sidis*** : ***si***mple ***d***ata ***i***nterface**s**
+> is a Python module that aims to reduce common programming tasks to a single line of code, such as typecasting and data conversion, sorting and mapping, accessing and assigning values through loops, *etc*. The name is a tribute to the early American polymath, William James Sidis. Documentation can be found on the respective pages in the docs website at https://noeloikeau.github.io/sidis/. Here we give a brief overview of some of the main utilities.
 
 
 ## Install
 
-**NYI**: `pip install sidis`
+`pip install sidis`
 
 ## How to use
 
@@ -13,53 +13,119 @@ import sidis
 from sidis import *
 ```
 
-## Sorting, converting, accessing complex datastructures
+## Typecasting
+
+Sidis supports extensible typecasting between iterables and non-iterables, letting you do intuitive conversions such as:
+
+```python
+cast(0,list)
+```
+
+
+
+
+    [0]
+
+
+
+```python
+cast([0.9,1.1],int)
+```
+
+
+
+
+    [0, 1]
+
+
+
+or define your own rules:
+
+```python
+mycast = Caster()
+mycast[list][float] = lambda t: sum(t)
+mycast([0.9,1.1],float)
+```
+
+
+
+
+    2.0
+
+
+
+## Sorting and converting complex datastructures
+
+Sidis lets you sort python objects by the result of maps over those objects, and provides convenient conversion functions.
 
 ```python
 from sidis import sort, convert
 ```
 
 ```python
-sort([9,0,1,8,7],by=convert,key=lambda t:len(t[-1])) 
+#Convert the elements of a list to binary arrays, and sort by the length of the array
+sort([0,10,3,5],by=convert,key=lambda t:len(t[-1]))
 ```
 
 
 
 
-    [(9, array([1, 0, 0, 1])),
-     (8, array([1, 0, 0, 0])),
-     (7, array([1, 1, 1])),
-     (0, array([0])),
-     (1, array([1]))]
+    [(10, [1, 0, 1, 0]), (5, [1, 0, 1]), (3, [1, 1]), (0, [0])]
+
+
+
+By default, `convert` converts to a binary array. If we want to change the arguments of the map without yet evaluating it, we can use `pipe`:
+
+```python
+from sidis import pipe #like functools.partial, but also allows for typecasting of input and output data
+```
+
+Now let's convert to hex:
+
+```python
+sort([0.9,10.5,3.1,5.5],by=pipe(convert,to=hex,otype=int)) #convert the elements `otype` into integers, then hex 
+```
+
+
+
+
+    [(10.5, '0xa'), (5.5, '0x5'), (3.1, '0x3'), (0.9, '0x0')]
+
+
+
+## Arbitrary access to data structures
+
+We can access and change arbitrary datastructures with `get` and `give`:
+
+```python
+a=[1]
+get(a,0) #get 0th level or attribute of a
+```
+
+
+
+
+    1
 
 
 
 ```python
-sort([9,0,1,8,7],by=nbits,sift=lambda t:t[-1]>2)
+[give(a,0,a[0]+1) for i in range(10)] #and can assign arbitrary levels of objects without writing entire loops!
+a
 ```
 
 
 
 
-    [(9, 4), (8, 4), (7, 3)]
+    [11]
 
 
 
-```python
-from functools import partial
-sort([9,0,1,8,7],by=partial(convert,to=hex,astype=int)) 
-```
-
-
-
-
-    [(9, '0x9'), (8, '0x8'), (7, '0x7'), (1, '0x1'), (0, '0x0')]
-
-
+and can apply this level of control to more complex datastructures:
 
 ```python
 import networkx as nx
-g=nx.DiGraph()
+g=nx.DiGraph() #create a ring with a loop, 0->1->2->0->0
 g.add_edges_from([(0,1),(1,2),(2,0)])
 g.add_edges_from([(0,0)])
 g.in_degree()
@@ -74,7 +140,7 @@ g.in_degree()
 
 ```python
 from sidis import get
-get(g,'in_degree',0) #arbitrary access to objects and functions
+get(g,'in_degree',0) #get in-degree of node 0
 ```
 
 
@@ -83,6 +149,8 @@ get(g,'in_degree',0) #arbitrary access to objects and functions
     2
 
 
+
+and use this to sort with more abstract methods:
 
 ```python
 sort(g.nodes,by=g.in_degree)
@@ -108,6 +176,8 @@ sort(g.nodes,by=g.edges,key=lambda t:len(list(t[-1])))
 
 
 
+or even give attributes to objects:
+
 ```python
 from sidis import give
 give(g,'nodes',0,newattr='for fun')
@@ -129,18 +199,69 @@ sort(g.edges,'weight')
 
 
 
-    [array([0.94188414]),
-     array([0.15251922]),
-     array([0.11177097]),
-     array([0.03030451])]
+    [array([0.6407291]),
+     array([0.40178821]),
+     array([0.36836607]),
+     array([0.11689043])]
+
+
+
+## Arbitrary mapping
+
+sidis also extends mapping using `maps`, which lets you pass in an object and a series of functions and evaluate those functions independently or sequentially over the input to the desired depth:
+
+```python
+f1=lambda t:t
+f2=lambda t:t+1
+f3=lambda t:t+2
+maps(0,f1,f2,f3) #apply them individually
+```
+
+
+
+
+    [0, 1, 2]
+
+
+
+```python
+maps(0,f1,f2,f3,depth=-1) #apply them sequentially
+```
+
+
+
+
+    3
+
+
+
+```python
+maps([0,1],f1,f2,f3,depth=1) #apply f1 to 0, then return f2(f1(0)) and f2(f1(0)), then repeat for 1
+```
+
+
+
+
+    [[1, 2], [2, 3]]
 
 
 
 ## ... and more!
 
 ```python
-from sidis import depth,flatten,inflate,fillar,Template,RNG,cast
+from sidis import depth,flatten,unflatten,fill,Template,RNG
 ```
+
+```python
+depth([[0]])
+```
+
+
+
+
+    2
+
+
 
 ```python
 depth({'a':0,'b':{'c':1,'d':3}})
@@ -165,7 +286,7 @@ flatten({'a':0,'b':{'c':1,'d':3}})
 
 
 ```python
-inflate({'a': 0, 'b,c': 1, 'b,d': 3})
+unflatten({'a': 0, 'b,c': 1, 'b,d': 3})
 ```
 
 
@@ -176,7 +297,7 @@ inflate({'a': 0, 'b,c': 1, 'b,d': 3})
 
 
 ```python
-fillar([[1],[2,3]],fillwith=1000,mask=False)
+fill([[1],[2,3]],fillwith=1000,mask=False)
 ```
 
 
@@ -199,17 +320,6 @@ and provide {0} ZIP _iter, lambda t: 'embedded iterable functions!'
 
     fill out your name and information
     and provide embedded iterable functions! 
-
-
-
-```python
-cast((0.1,0.5,2.5),int)
-```
-
-
-
-
-    (0, 0, 2)
 
 
 
