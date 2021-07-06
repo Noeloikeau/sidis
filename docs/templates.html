@@ -64,7 +64,7 @@ C:\Anaconda3\lib\site-packages\numpy\.libs\libopenblas.PYQHXLVVQ7VESDPUVUADXEVJO
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lst2txt" class="doc_header"><code>lst2txt</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/templates.py#L22" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lst2txt</code>(<strong><code>ltxt</code></strong>)</p>
+<h4 id="lst2txt" class="doc_header"><code>lst2txt</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/templates.py#L25" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lst2txt</code>(<strong><code>ltxt</code></strong>)</p>
 </blockquote>
 <p>Concatenate a list of text <code>ltxt</code> into a string separated by newlines.</p>
 
@@ -96,7 +96,7 @@ C:\Anaconda3\lib\site-packages\numpy\.libs\libopenblas.PYQHXLVVQ7VESDPUVUADXEVJO
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Template" class="doc_header"><code>class</code> <code>Template</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/templates.py#L72" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Template</code>(<strong><code>temp</code></strong>, <strong>**<code>kwargs</code></strong>)</p>
+<h2 id="Template" class="doc_header"><code>class</code> <code>Template</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/templates.py#L75" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Template</code>(<strong><code>temp</code></strong>, <strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
 <p>Automates iteration over arbitrary Python functions embedded into blocks of text.</p>
 <p>Class attrs:</p>
@@ -274,7 +274,7 @@ And this one is iterated: 10 </pre>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="ZIP" class="doc_header"><code>ZIP</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/templates.py#L26" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ZIP</code>(<strong><code>txt</code></strong>, <strong><code>_iter</code></strong>, <strong>*<code>lambdas</code></strong>, <strong><code>as_txt</code></strong>=<em><code>False</code></em>)</p>
+<h4 id="ZIP" class="doc_header"><code>ZIP</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/templates.py#L29" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ZIP</code>(<strong><code>txt</code></strong>, <strong><code>_iter</code></strong>, <strong>*<code>lambdas</code></strong>, <strong><code>as_txt</code></strong>=<em><code>False</code></em>)</p>
 </blockquote>
 <p>Loop over the iterable <code>_iter</code> and format <code>txt</code> in order of the <code>lambdas</code>.
 If <code>_iter</code> is an int, it is treated as <code>range(_iter)</code>, and if it is a tuple,
@@ -348,7 +348,7 @@ it is treated as <code>np.ndindex(_iter)</code>.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="replace" class="doc_header"><code>replace</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/templates.py#L12" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>replace</code>(<strong><code>l</code></strong>, <strong>**<code>kwargs</code></strong>)</p>
+<h4 id="replace" class="doc_header"><code>replace</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/templates.py#L15" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>replace</code>(<strong><code>l</code></strong>, <strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
 <p>Replace the line <code>l</code> in <code>txt</code> with any occurances of the dictionaried values.</p>
 
@@ -406,7 +406,7 @@ it is treated as <code>np.ndindex(_iter)</code>.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="txt2lst" class="doc_header"><code>txt2lst</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/templates.py#L18" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>txt2lst</code>(<strong><code>txt</code></strong>)</p>
+<h4 id="txt2lst" class="doc_header"><code>txt2lst</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/templates.py#L21" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>txt2lst</code>(<strong><code>txt</code></strong>)</p>
 </blockquote>
 <p>Remove all newlines <code>` and empty strings `` from the template</code>txt`.</p>
 
@@ -467,7 +467,7 @@ it is treated as <code>np.ndindex(_iter)</code>.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="getEvals" class="doc_header"><code>getEvals</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/templates.py#L40" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>getEvals</code>(<strong><code>replaced_txt</code></strong>, <strong><code>funcs</code></strong>=<em><code>['ZIP']</code></em>)</p>
+<h4 id="getEvals" class="doc_header"><code>getEvals</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/templates.py#L43" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>getEvals</code>(<strong><code>replaced_txt</code></strong>, <strong><code>funcs</code></strong>=<em><code>['ZIP']</code></em>)</p>
 </blockquote>
 <p>Obtain a tuple of containing the <code>funcs</code>, the text they format, their arguments,
 and their line index in the template <code>txt</code>.</p>
@@ -535,7 +535,7 @@ and their line index in the template <code>txt</code>.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="filltxt" class="doc_header"><code>filltxt</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/templates.py#L52" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>filltxt</code>(<strong><code>txt</code></strong>, <strong><code>funcs</code></strong>=<em><code>['ZIP']</code></em>, <strong>**<code>kwargs</code></strong>)</p>
+<h4 id="filltxt" class="doc_header"><code>filltxt</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/templates.py#L55" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>filltxt</code>(<strong><code>txt</code></strong>, <strong><code>funcs</code></strong>=<em><code>['ZIP']</code></em>, <strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
 <p>Take a template <code>txt</code>, replace all <code>kwargs</code> via <code>Replace</code>, then evaluate the <code>funcs</code>
 on the surrounding text using <code>GetEvals</code>.</p>

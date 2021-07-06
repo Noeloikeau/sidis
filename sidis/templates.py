@@ -3,10 +3,13 @@
 __all__ = ['replace', 'txt2lst', 'lst2txt', 'ZIP', 'getEvals', 'filltxt', 'Template']
 
 # Cell
-from typing import Optional, Tuple, Dict, Callable, Union, Mapping, Sequence, Iterable
-import numpy as np
-from .conversion import cast
-from .recursion import get
+import warnings
+with warnings.catch_warnings(): #ignore warnings
+    warnings.simplefilter("ignore")
+    from typing import Optional, Tuple, Dict, Callable, Union, Mapping, Sequence, Iterable
+    import numpy as np
+    from .conversion import cast
+    from .recursion import get
 
 # Cell
 def replace(l,**kwargs):

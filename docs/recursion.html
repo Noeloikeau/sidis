@@ -98,7 +98,7 @@ C:\Anaconda3\lib\site-packages\numpy\.libs\libopenblas.PYQHXLVVQ7VESDPUVUADXEVJO
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="depth" class="doc_header"><code>depth</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/recursion.py#L15" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>depth</code>(<strong><code>obj</code></strong>:<code>Union</code>[<code>dict</code>, <code>list</code>])</p>
+<h4 id="depth" class="doc_header"><code>depth</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/recursion.py#L18" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>depth</code>(<strong><code>obj</code></strong>:<code>Union</code>[<code>dict</code>, <code>list</code>])</p>
 </blockquote>
 <p>Recursively sort the number of layers of a nested
 list or dictionary <code>x</code>.</p>
@@ -197,7 +197,7 @@ list or dictionary <code>x</code>.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="flatten" class="doc_header"><code>flatten</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/recursion.py#L28" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>flatten</code>(<strong><code>obj</code></strong>:<code>Union</code>[<code>dict</code>, <code>list</code>], <strong><code>parent_key</code></strong>=<em><code>''</code></em>, <strong><code>sep</code></strong>=<em><code>','</code></em>)</p>
+<h4 id="flatten" class="doc_header"><code>flatten</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/recursion.py#L31" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>flatten</code>(<strong><code>obj</code></strong>:<code>Union</code>[<code>dict</code>, <code>list</code>], <strong><code>parent_key</code></strong>=<em><code>''</code></em>, <strong><code>sep</code></strong>=<em><code>','</code></em>)</p>
 </blockquote>
 <p>Concatenate the nested input <code>obj</code> into an equivalent
 datastructure of depth 1. Uses the <code>parent_key</code> and <code>sep</code>
@@ -297,7 +297,7 @@ arg to combine nested dictionary keys.
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="unflatten" class="doc_header"><code>unflatten</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/recursion.py#L61" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>unflatten</code>(<strong><code>d</code></strong>:<code>dict</code>, <strong><code>sep</code></strong>=<em><code>','</code></em>)</p>
+<h4 id="unflatten" class="doc_header"><code>unflatten</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/recursion.py#L64" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>unflatten</code>(<strong><code>d</code></strong>:<code>dict</code>, <strong><code>sep</code></strong>=<em><code>','</code></em>)</p>
 </blockquote>
 <p>Un-flatten a flattened nested dictionary <code>d</code> with
 concatenated key separation <code>sep</code>.
@@ -372,7 +372,7 @@ concatenated key separation <code>sep</code>.
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get" class="doc_header"><code>get</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/recursion.py#L83" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get</code>(<strong><code>obj</code></strong>:<code>Union</code>[<code>object</code>, <code>dict</code>, <code>list</code>, <code>tuple</code>, <code>callable</code>, <code>ndarray</code>], <strong>*<code>args</code></strong>:<code>Union</code>[<code>NoneType</code>, <code>str</code>, <code>int</code>, <code>float</code>, <code>tuple</code>, <code>list</code>, <code>dict</code>], <strong><code>retnone</code></strong>:<code>bool</code>=<em><code>True</code></em>, <strong><code>call</code></strong>:<code>bool</code>=<em><code>False</code></em>, <strong>**<code>kwargs</code></strong>)</p>
+<h4 id="get" class="doc_header"><code>get</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/recursion.py#L86" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get</code>(<strong><code>obj</code></strong>:<code>Union</code>[<code>object</code>, <code>dict</code>, <code>list</code>, <code>tuple</code>, <code>callable</code>, <code>ndarray</code>], <strong>*<code>args</code></strong>:<code>Union</code>[<code>NoneType</code>, <code>str</code>, <code>int</code>, <code>float</code>, <code>tuple</code>, <code>list</code>, <code>dict</code>], <strong><code>retnone</code></strong>:<code>bool</code>=<em><code>True</code></em>, <strong><code>call</code></strong>:<code>bool</code>=<em><code>False</code></em>, <strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
 <p>Recursively accesses <code>obj</code> by the given ordered attributes/keys/indexes <code>args</code>.</p>
 <p>If <code>call</code>, the last accessed object will try to call any **kwargs.</p>
@@ -665,7 +665,7 @@ the object can't be accessed by any of the args; else, returns <code>obj</code>.
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="give" class="doc_header"><code>give</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/recursion.py#L122" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>give</code>(<strong><code>obj</code></strong>:<code>Union</code>[<code>object</code>, <code>dict</code>, <code>list</code>, <code>tuple</code>, <code>ndarray</code>], <strong>*<code>args</code></strong>:<code>Union</code>[<code>str</code>, <code>int</code>, <code>float</code>, <code>tuple</code>, <code>list</code>, <code>dict</code>], <strong>**<code>kwargs</code></strong>:<code>object</code>)</p>
+<h4 id="give" class="doc_header"><code>give</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/recursion.py#L125" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>give</code>(<strong><code>obj</code></strong>:<code>Union</code>[<code>object</code>, <code>dict</code>, <code>list</code>, <code>tuple</code>, <code>ndarray</code>], <strong>*<code>args</code></strong>:<code>Union</code>[<code>str</code>, <code>int</code>, <code>float</code>, <code>tuple</code>, <code>list</code>, <code>dict</code>], <strong>**<code>kwargs</code></strong>:<code>object</code>)</p>
 </blockquote>
 <p>Assign <code>args</code> element of <code>obj</code> to a value. If no <code>kwargs</code>,
 assign the last item of <code>args</code>. If <code>kwargs</code>, assign those.</p>
@@ -976,9 +976,9 @@ assign the last item of <code>args</code>. If <code>kwargs</code>, assign those.
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>(0, 1) [0.15324507]
-(1, 2) [0.15174739]
-(2, 0) [0.24494159]
+<pre>(0, 1) [0.29207978]
+(1, 2) [0.19885117]
+(2, 0) [0.66909138]
 </pre>
 </div>
 </div>
@@ -1045,7 +1045,7 @@ assign the last item of <code>args</code>. If <code>kwargs</code>, assign those.
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[array([0.87330487]), array([0.23282991]), array([0.25588777])]</pre>
+<pre>[array([0.26994865]), array([0.57217611]), array([0.32531337])]</pre>
 </div>
 
 </div>
@@ -1089,7 +1089,7 @@ assign the last item of <code>args</code>. If <code>kwargs</code>, assign those.
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="sort" class="doc_header"><code>sort</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/recursion.py#L179" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>sort</code>(<strong><code>obj</code></strong>:<code>Iterable</code>[<code>T_co</code>], <strong>*<code>args</code></strong>:<code>Union</code>[<code>NoneType</code>, <code>str</code>, <code>int</code>, <code>float</code>, <code>tuple</code>, <code>list</code>, <code>dict</code>], <strong><code>by</code></strong>:<code>Union</code>[<code>NoneType</code>, <code>object</code>, <code>dict</code>, <code>list</code>, <code>tuple</code>, <code>callable</code>, <code>ndarray</code>]=<em><code>None</code></em>, <strong><code>key</code></strong>:<code>callable</code>=<em><code>&lt;lambda&gt;</code></em>, <strong><code>sift</code></strong>:<code>callable</code>=<em><code>&lt;lambda&gt;</code></em>, <strong><code>reverse</code></strong>:<code>bool</code>=<em><code>True</code></em>)</p>
+<h4 id="sort" class="doc_header"><code>sort</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/recursion.py#L182" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>sort</code>(<strong><code>obj</code></strong>:<code>Iterable</code>[<code>T_co</code>], <strong>*<code>args</code></strong>:<code>Union</code>[<code>NoneType</code>, <code>str</code>, <code>int</code>, <code>float</code>, <code>tuple</code>, <code>list</code>, <code>dict</code>], <strong><code>by</code></strong>:<code>Union</code>[<code>NoneType</code>, <code>object</code>, <code>dict</code>, <code>list</code>, <code>tuple</code>, <code>callable</code>, <code>ndarray</code>]=<em><code>None</code></em>, <strong><code>key</code></strong>:<code>callable</code>=<em><code>&lt;lambda&gt;</code></em>, <strong><code>sift</code></strong>:<code>callable</code>=<em><code>&lt;lambda&gt;</code></em>, <strong><code>reverse</code></strong>:<code>bool</code>=<em><code>True</code></em>)</p>
 </blockquote>
 <p>Recursively sorts <code>obj</code> <code>by</code> <code>args</code> using <code>key</code>.</p>
 <p>Treats <code>obj</code> as an iterator and wraps <code>by</code> around the elements of <code>obj</code>,</p>
@@ -1198,7 +1198,7 @@ assign the last item of <code>args</code>. If <code>kwargs</code>, assign those.
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[array([0.87330487]), array([0.25588777]), array([0.23282991])]</pre>
+<pre>[array([0.57217611]), array([0.32531337]), array([0.26994865])]</pre>
 </div>
 
 </div>
@@ -1231,7 +1231,7 @@ assign the last item of <code>args</code>. If <code>kwargs</code>, assign those.
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[(0, array([0.87330487])), (2, array([0.25588777])), (1, array([0.23282991]))]</pre>
+<pre>[(1, array([0.57217611])), (2, array([0.32531337])), (0, array([0.26994865]))]</pre>
 </div>
 
 </div>
@@ -1264,7 +1264,7 @@ assign the last item of <code>args</code>. If <code>kwargs</code>, assign those.
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[array([0.24494159]), array([0.15324507]), array([0.15174739])]</pre>
+<pre>[array([0.66909138]), array([0.29207978]), array([0.19885117])]</pre>
 </div>
 
 </div>
@@ -1297,9 +1297,9 @@ assign the last item of <code>args</code>. If <code>kwargs</code>, assign those.
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[((2, 0), array([0.24494159])),
- ((0, 1), array([0.15324507])),
- ((1, 2), array([0.15174739]))]</pre>
+<pre>[((2, 0), array([0.66909138])),
+ ((0, 1), array([0.29207978])),
+ ((1, 2), array([0.19885117]))]</pre>
 </div>
 
 </div>
@@ -1405,7 +1405,7 @@ assign the last item of <code>args</code>. If <code>kwargs</code>, assign those.
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="pipe" class="doc_header"><code>pipe</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/recursion.py#L223" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>pipe</code>(<strong><code>func</code></strong>, <strong><code>otype</code></strong>=<em><code>None</code></em>, <strong><code>ftype</code></strong>=<em><code>None</code></em>, <strong><code>cast</code></strong>=<em><code>&lt;sidis.conversion.Caster object at 0x000001877E0FF388&gt;</code></em>, <strong>*<code>args</code></strong>, <strong>**<code>kwargs</code></strong>)</p>
+<h4 id="pipe" class="doc_header"><code>pipe</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/recursion.py#L226" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>pipe</code>(<strong><code>func</code></strong>, <strong><code>otype</code></strong>=<em><code>None</code></em>, <strong><code>ftype</code></strong>=<em><code>None</code></em>, <strong><code>cast</code></strong>=<em><code>&lt;sidis.conversion.Caster object at 0x00000199FFF34E08&gt;</code></em>, <strong>*<code>args</code></strong>, <strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
 <p>Pipelines the <code>func</code> to act on a later object.
 Returns a partially evaluated function over any <code>args</code> and <code>kwargs</code>.
@@ -1514,7 +1514,7 @@ The output of the function is casted to <code>ftype</code></p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="maps" class="doc_header"><code>maps</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/recursion.py#L238" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>maps</code>(<strong><code>obj</code></strong>, <strong>*<code>funcs</code></strong>, <strong><code>depth</code></strong>=<em><code>0</code></em>, <strong><code>zipit</code></strong>=<em><code>False</code></em>, <strong><code>to</code></strong>=<em><code>None</code></em>, <strong><code>squeeze</code></strong>=<em><code>True</code></em>)</p>
+<h4 id="maps" class="doc_header"><code>maps</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/recursion.py#L241" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>maps</code>(<strong><code>obj</code></strong>, <strong>*<code>funcs</code></strong>, <strong><code>depth</code></strong>=<em><code>0</code></em>, <strong><code>zipit</code></strong>=<em><code>False</code></em>, <strong><code>to</code></strong>=<em><code>None</code></em>, <strong><code>squeeze</code></strong>=<em><code>True</code></em>)</p>
 </blockquote>
 <p>Sequentially map <code>funcs</code> over the elements of <code>obj</code>, "o".
 The first <code>depth</code> number of funcs are mapped sequentially f(g(h(...(o)..)))=x.

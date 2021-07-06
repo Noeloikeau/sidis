@@ -101,7 +101,7 @@ C:\Anaconda3\lib\site-packages\numpy\.libs\libopenblas.PYQHXLVVQ7VESDPUVUADXEVJO
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="trycast" class="doc_header"><code>trycast</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L18" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>trycast</code>(<strong><code>obj</code></strong>:<code>Union</code>[<code>NoneType</code>, <code>int</code>, <code>float</code>, <code>list</code>, <code>tuple</code>, <code>str</code>, <code>dict</code>, <code>set</code>, <code>ndarray</code>], <strong><code>to</code></strong>:<code>type</code>)</p>
+<h4 id="trycast" class="doc_header"><code>trycast</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L21" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>trycast</code>(<strong><code>obj</code></strong>:<code>Union</code>[<code>NoneType</code>, <code>int</code>, <code>float</code>, <code>list</code>, <code>tuple</code>, <code>str</code>, <code>dict</code>, <code>set</code>, <code>ndarray</code>], <strong><code>to</code></strong>:<code>type</code>)</p>
 </blockquote>
 <p>Attempts to typecast <code>obj</code> to datatype <code>to</code>
 using default type conversion. Fallback
@@ -208,7 +208,7 @@ of more complex casting cases in this module.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="nonitr2itr" class="doc_header"><code>nonitr2itr</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L30" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>nonitr2itr</code>(<strong><code>obj</code></strong>:<code>Union</code>[<code>NoneType</code>, <code>int</code>, <code>float</code>, <code>list</code>, <code>tuple</code>, <code>str</code>, <code>dict</code>, <code>set</code>, <code>ndarray</code>], <strong><code>to</code></strong>:<code>type</code>)</p>
+<h4 id="nonitr2itr" class="doc_header"><code>nonitr2itr</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L33" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>nonitr2itr</code>(<strong><code>obj</code></strong>:<code>Union</code>[<code>NoneType</code>, <code>int</code>, <code>float</code>, <code>list</code>, <code>tuple</code>, <code>str</code>, <code>dict</code>, <code>set</code>, <code>ndarray</code>], <strong><code>to</code></strong>:<code>type</code>)</p>
 </blockquote>
 <p>Wrap the noniterable <code>obj</code> into the iterable type <code>to</code>.</p>
 
@@ -273,7 +273,7 @@ of more complex casting cases in this module.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="itr2nonitr" class="doc_header"><code>itr2nonitr</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L50" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>itr2nonitr</code>(<strong><code>obj</code></strong>:<code>Union</code>[<code>NoneType</code>, <code>int</code>, <code>float</code>, <code>list</code>, <code>tuple</code>, <code>str</code>, <code>dict</code>, <code>set</code>, <code>ndarray</code>], <strong><code>to</code></strong>:<code>type</code>)</p>
+<h4 id="itr2nonitr" class="doc_header"><code>itr2nonitr</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L53" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>itr2nonitr</code>(<strong><code>obj</code></strong>:<code>Union</code>[<code>NoneType</code>, <code>int</code>, <code>float</code>, <code>list</code>, <code>tuple</code>, <code>str</code>, <code>dict</code>, <code>set</code>, <code>ndarray</code>], <strong><code>to</code></strong>:<code>type</code>)</p>
 </blockquote>
 <p>Treat each element of the iterable <code>obj</code> as the
 noniterable type <code>to</code>.</p>
@@ -332,7 +332,7 @@ noniterable type <code>to</code>.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="itr2itr" class="doc_header"><code>itr2itr</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L62" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>itr2itr</code>(<strong><code>obj</code></strong>:<code>Union</code>[<code>NoneType</code>, <code>int</code>, <code>float</code>, <code>list</code>, <code>tuple</code>, <code>str</code>, <code>dict</code>, <code>set</code>, <code>ndarray</code>], <strong><code>to</code></strong>:<code>type</code>)</p>
+<h4 id="itr2itr" class="doc_header"><code>itr2itr</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L65" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>itr2itr</code>(<strong><code>obj</code></strong>:<code>Union</code>[<code>NoneType</code>, <code>int</code>, <code>float</code>, <code>list</code>, <code>tuple</code>, <code>str</code>, <code>dict</code>, <code>set</code>, <code>ndarray</code>], <strong><code>to</code></strong>:<code>type</code>)</p>
 </blockquote>
 <p>Treat the iterable <code>obj</code> as a new iterable of type <code>to</code>.
 Treats dictionaries as their items rather than default keys,
@@ -446,7 +446,7 @@ and treats np.ndarray as the callable np.array(obj).</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Caster" class="doc_header"><code>class</code> <code>Caster</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L80" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Caster</code>(<strong><code>rules</code></strong>:<code>Optional</code>[<code>dict</code>]=<em><code>None</code></em>)</p>
+<h2 id="Caster" class="doc_header"><code>class</code> <code>Caster</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L83" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Caster</code>(<strong><code>rules</code></strong>:<code>Optional</code>[<code>dict</code>]=<em><code>None</code></em>)</p>
 </blockquote>
 <p>Universal typecasting class with customizable ruleset.
 Stores the ruleset as a dictionary of dictionaries.
@@ -672,15 +672,15 @@ The ruleset can be updated and changed as needed.</p>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{None: functools.partial(&lt;function trycast at 0x000001D5E39DF1F8&gt;, to=None),
- int: functools.partial(&lt;function trycast at 0x000001D5E39DF1F8&gt;, to=&lt;class &#39;int&#39;&gt;),
- float: functools.partial(&lt;function trycast at 0x000001D5E39DF1F8&gt;, to=&lt;class &#39;float&#39;&gt;),
- list: functools.partial(&lt;function nonitr2itr at 0x000001D581CE0828&gt;, to=&lt;class &#39;list&#39;&gt;),
- tuple: functools.partial(&lt;function nonitr2itr at 0x000001D581CE0828&gt;, to=&lt;class &#39;tuple&#39;&gt;),
- str: functools.partial(&lt;function trycast at 0x000001D5E39DF1F8&gt;, to=&lt;class &#39;str&#39;&gt;),
- dict: functools.partial(&lt;function nonitr2itr at 0x000001D581CE0828&gt;, to=&lt;class &#39;dict&#39;&gt;),
- set: functools.partial(&lt;function nonitr2itr at 0x000001D581CE0828&gt;, to=&lt;class &#39;set&#39;&gt;),
- numpy.ndarray: functools.partial(&lt;function nonitr2itr at 0x000001D581CE0828&gt;, to=&lt;class &#39;numpy.ndarray&#39;&gt;)}</pre>
+<pre>{None: functools.partial(&lt;function trycast at 0x00000273E43FD318&gt;, to=None),
+ int: functools.partial(&lt;function trycast at 0x00000273E43FD318&gt;, to=&lt;class &#39;int&#39;&gt;),
+ float: functools.partial(&lt;function trycast at 0x00000273E43FD318&gt;, to=&lt;class &#39;float&#39;&gt;),
+ list: functools.partial(&lt;function nonitr2itr at 0x00000273E51B8828&gt;, to=&lt;class &#39;list&#39;&gt;),
+ tuple: functools.partial(&lt;function nonitr2itr at 0x00000273E51B8828&gt;, to=&lt;class &#39;tuple&#39;&gt;),
+ str: functools.partial(&lt;function trycast at 0x00000273E43FD318&gt;, to=&lt;class &#39;str&#39;&gt;),
+ dict: functools.partial(&lt;function nonitr2itr at 0x00000273E51B8828&gt;, to=&lt;class &#39;dict&#39;&gt;),
+ set: functools.partial(&lt;function nonitr2itr at 0x00000273E51B8828&gt;, to=&lt;class &#39;set&#39;&gt;),
+ numpy.ndarray: functools.partial(&lt;function nonitr2itr at 0x00000273E51B8828&gt;, to=&lt;class &#39;numpy.ndarray&#39;&gt;)}</pre>
 </div>
 
 </div>
@@ -905,7 +905,7 @@ The ruleset can be updated and changed as needed.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="typestr" class="doc_header"><code>typestr</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L145" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>typestr</code>(<strong><code>x</code></strong>:<code>Union</code>[<code>NoneType</code>, <code>int</code>, <code>float</code>, <code>list</code>, <code>tuple</code>, <code>str</code>, <code>dict</code>, <code>set</code>, <code>ndarray</code>])</p>
+<h4 id="typestr" class="doc_header"><code>typestr</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L148" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>typestr</code>(<strong><code>x</code></strong>:<code>Union</code>[<code>NoneType</code>, <code>int</code>, <code>float</code>, <code>list</code>, <code>tuple</code>, <code>str</code>, <code>dict</code>, <code>set</code>, <code>ndarray</code>])</p>
 </blockquote>
 <p>Parses the string of the input type for readability.</p>
 
@@ -1126,7 +1126,7 @@ From [0.  0.1] to numpy.ndarray: [0.  0.1]
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Data-Conversions">Data Conversions<a class="anchor-link" href="#Data-Conversions"> </a></h2><p>Here we present useful data type conversion, like decimal numbers to binary arrays, culminating in the <a href="/sidis/conversion.html#convert"><code>convert</code></a> function. We also give various helpers such as <a href="/sidis/conversion.html#RNG"><code>RNG</code></a> and analytic continuation of logic such as <a href="/sidis/conversion.html#XOR"><code>XOR</code></a>.</p>
+<h2 id="Data-Conversions">Data Conversions<a class="anchor-link" href="#Data-Conversions"> </a></h2><p>Here we present useful data type conversion, like decimal numbers to binary arrays, culminating in the <a href="/sidis/conversion.html#convert"><code>convert</code></a> function. We also give various helpers such as <a href="/sidis/utils.html#RNG"><code>RNG</code></a> and analytic continuation of logic such as <a href="/sidis/conversion.html#XOR"><code>XOR</code></a>.</p>
 
 </div>
 </div>
@@ -1149,7 +1149,7 @@ From [0.  0.1] to numpy.ndarray: [0.  0.1]
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="pad" class="doc_header"><code>pad</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L156" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>pad</code>(<strong><code>data</code></strong>:<code>Union</code>[<code>ndarray</code>, <code>list</code>], <strong><code>bits</code></strong>:<code>Optional</code>[<code>int</code>]=<em><code>None</code></em>, <strong><code>to</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>]=<em><code>int</code></em>)</p>
+<h4 id="pad" class="doc_header"><code>pad</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L159" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>pad</code>(<strong><code>data</code></strong>:<code>Union</code>[<code>ndarray</code>, <code>list</code>], <strong><code>bits</code></strong>:<code>Optional</code>[<code>int</code>]=<em><code>None</code></em>, <strong><code>to</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>]=<em><code>int</code></em>)</p>
 </blockquote>
 <p>Pads an array with zeros, up to a length of <code>bits</code>.</p>
 
@@ -1214,7 +1214,7 @@ From [0.  0.1] to numpy.ndarray: [0.  0.1]
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="fill" class="doc_header"><code>fill</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L171" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>fill</code>(<strong><code>x</code></strong>:<code>list</code>, <strong><code>fillwith</code></strong>=<em><code>nan</code></em>, <strong><code>mask</code></strong>=<em><code>True</code></em>)</p>
+<h4 id="fill" class="doc_header"><code>fill</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L174" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>fill</code>(<strong><code>x</code></strong>:<code>list</code>, <strong><code>fillwith</code></strong>=<em><code>nan</code></em>, <strong><code>mask</code></strong>=<em><code>True</code></em>)</p>
 </blockquote>
 <p>Turn uneven nested lists <code>x</code> into arrays <code>y</code> substituting
 missing entries using <code>fillwith</code> and optionally masking.</p>
@@ -1319,7 +1319,7 @@ missing entries using <code>fillwith</code> and optionally masking.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="nbits" class="doc_header"><code>nbits</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L186" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>nbits</code>(<strong><code>x</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>list</code>, <code>ndarray</code>])</p>
+<h4 id="nbits" class="doc_header"><code>nbits</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L189" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>nbits</code>(<strong><code>x</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>list</code>, <code>ndarray</code>])</p>
 </blockquote>
 <p>Return the number of bits required to represent the input <code>x</code>.</p>
 
@@ -1393,7 +1393,7 @@ i=10, nbits(10)=4
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="num2ar" class="doc_header"><code>num2ar</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L198" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>num2ar</code>(<strong><code>x</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>], <strong><code>bits</code></strong>:<code>Optional</code>[<code>int</code>]=<em><code>None</code></em>, <strong><code>to</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>]=<em><code>int</code></em>)</p>
+<h4 id="num2ar" class="doc_header"><code>num2ar</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L201" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>num2ar</code>(<strong><code>x</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>], <strong><code>bits</code></strong>:<code>Optional</code>[<code>int</code>]=<em><code>None</code></em>, <strong><code>to</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>]=<em><code>int</code></em>)</p>
 </blockquote>
 <p>Converts decimal number <code>x</code> to array <code>a</code> zero-padded with <code>bits</code>.</p>
 
@@ -1500,7 +1500,7 @@ i=10, num2ar(10)=[1, 0, 1, 0]
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="ar2num" class="doc_header"><code>ar2num</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L213" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ar2num</code>(<strong><code>a</code></strong>:<code>Union</code>[<code>list</code>, <code>ndarray</code>], <strong><code>to</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>]=<em><code>int</code></em>)</p>
+<h4 id="ar2num" class="doc_header"><code>ar2num</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L216" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ar2num</code>(<strong><code>a</code></strong>:<code>Union</code>[<code>list</code>, <code>ndarray</code>], <strong><code>to</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>]=<em><code>int</code></em>)</p>
 </blockquote>
 <p>Converts array <code>a</code> to decimal number <code>x</code>.</p>
 
@@ -1567,7 +1567,7 @@ a=[1, 1], ar2num(a)=3
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="ar2hex" class="doc_header"><code>ar2hex</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L226" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ar2hex</code>(<strong><code>a</code></strong>:<code>Union</code>[<code>list</code>, <code>ndarray</code>], <strong><code>bits</code></strong>:<code>Optional</code>[<code>int</code>]=<em><code>None</code></em>, <strong><code>prefix</code></strong>:<code>bool</code>=<em><code>True</code></em>)</p>
+<h4 id="ar2hex" class="doc_header"><code>ar2hex</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L229" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ar2hex</code>(<strong><code>a</code></strong>:<code>Union</code>[<code>list</code>, <code>ndarray</code>], <strong><code>bits</code></strong>:<code>Optional</code>[<code>int</code>]=<em><code>None</code></em>, <strong><code>prefix</code></strong>:<code>bool</code>=<em><code>True</code></em>)</p>
 </blockquote>
 <p>Converts binary array to hex string
 in:
@@ -1669,7 +1669,7 @@ out:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="hex2ar" class="doc_header"><code>hex2ar</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L244" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>hex2ar</code>(<strong><code>h</code></strong>:<code>str</code>, <strong><code>bits</code></strong>:<code>Optional</code>[<code>int</code>]=<em><code>None</code></em>, <strong><code>to</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>]=<em><code>int</code></em>)</p>
+<h4 id="hex2ar" class="doc_header"><code>hex2ar</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L247" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>hex2ar</code>(<strong><code>h</code></strong>:<code>str</code>, <strong><code>bits</code></strong>:<code>Optional</code>[<code>int</code>]=<em><code>None</code></em>, <strong><code>to</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>]=<em><code>int</code></em>)</p>
 </blockquote>
 <p>Converts a hex string <code>h</code> into an array <code>a</code> padded with <code>bits</code> and elements of <code>astype</code>.</p>
 
@@ -1767,7 +1767,7 @@ out:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="str2ar" class="doc_header"><code>str2ar</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L255" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>str2ar</code>(<strong><code>s</code></strong>:<code>str</code>, <strong><code>to</code></strong>:<code>Union</code>[<code>list</code>, <code>ndarray</code>]=<em><code>ndarray</code></em>)</p>
+<h4 id="str2ar" class="doc_header"><code>str2ar</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L258" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>str2ar</code>(<strong><code>s</code></strong>:<code>str</code>, <strong><code>to</code></strong>:<code>Union</code>[<code>list</code>, <code>ndarray</code>]=<em><code>ndarray</code></em>)</p>
 </blockquote>
 <p>Converts an input string <code>s</code> into an array or list <code>a</code> as per <code>astype</code>.</p>
 
@@ -1832,7 +1832,7 @@ out:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="ar2str" class="doc_header"><code>ar2str</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L264" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ar2str</code>(<strong><code>a</code></strong>:<code>Union</code>[<code>list</code>, <code>ndarray</code>], <strong><code>to</code></strong>:<code>Union</code>[<code>NoneType</code>, <code>int</code>, <code>float</code>, <code>list</code>, <code>tuple</code>, <code>str</code>, <code>dict</code>, <code>set</code>, <code>ndarray</code>]=<em><code>None</code></em>)</p>
+<h4 id="ar2str" class="doc_header"><code>ar2str</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L267" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ar2str</code>(<strong><code>a</code></strong>:<code>Union</code>[<code>list</code>, <code>ndarray</code>], <strong><code>to</code></strong>:<code>Union</code>[<code>NoneType</code>, <code>int</code>, <code>float</code>, <code>list</code>, <code>tuple</code>, <code>str</code>, <code>dict</code>, <code>set</code>, <code>ndarray</code>]=<em><code>None</code></em>)</p>
 </blockquote>
 <p>Converts an input array <code>a</code> into a string <code>s</code>.</p>
 
@@ -1890,7 +1890,7 @@ out:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="COPY" class="doc_header"><code>COPY</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L272" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>COPY</code>(<strong><code>x</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>])</p>
+<h4 id="COPY" class="doc_header"><code>COPY</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L275" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>COPY</code>(<strong><code>x</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>])</p>
 </blockquote>
 <p>Simply returns <code>x</code>.</p>
 
@@ -1915,7 +1915,7 @@ out:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="Exclusive_OR" class="doc_header"><code>Exclusive_OR</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L298" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>Exclusive_OR</code>(<strong><code>x</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>], <strong><code>y</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>])</p>
+<h4 id="Exclusive_OR" class="doc_header"><code>Exclusive_OR</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L301" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>Exclusive_OR</code>(<strong><code>x</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>], <strong><code>y</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>])</p>
 </blockquote>
 <p>Return logical exclusive OR of <code>x</code> and <code>y</code>. See DeMorgan's Laws.</p>
 
@@ -1947,7 +1947,7 @@ out:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="NOT" class="doc_header"><code>NOT</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L278" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>NOT</code>(<strong><code>x</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>])</p>
+<h4 id="NOT" class="doc_header"><code>NOT</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L281" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>NOT</code>(<strong><code>x</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>])</p>
 </blockquote>
 <p>Return conjugate of <code>x</code>.</p>
 
@@ -2038,7 +2038,7 @@ out:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="AND" class="doc_header"><code>AND</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L284" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>AND</code>(<strong><code>x</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>], <strong><code>y</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>])</p>
+<h4 id="AND" class="doc_header"><code>AND</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L287" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>AND</code>(<strong><code>x</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>], <strong><code>y</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>])</p>
 </blockquote>
 <p>Return logical AND of <code>x</code> and <code>y</code>.</p>
 
@@ -2129,7 +2129,7 @@ out:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="OR" class="doc_header"><code>OR</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L291" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>OR</code>(<strong><code>x</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>], <strong><code>y</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>])</p>
+<h4 id="OR" class="doc_header"><code>OR</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L294" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>OR</code>(<strong><code>x</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>], <strong><code>y</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>])</p>
 </blockquote>
 <p>Return logical OR of <code>x</code> and <code>y</code>. See DeMorgan's Laws.</p>
 
@@ -2220,7 +2220,7 @@ out:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="XOR" class="doc_header"><code>XOR</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L305" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>XOR</code>(<strong>*<code>args</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>list</code>, <code>ndarray</code>])</p>
+<h4 id="XOR" class="doc_header"><code>XOR</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L308" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>XOR</code>(<strong>*<code>args</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>list</code>, <code>ndarray</code>])</p>
 </blockquote>
 <p>Arbitrary input XOR using recursiveness.</p>
 
@@ -2395,7 +2395,7 @@ XOR(1, 1)=0
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="ar2gr" class="doc_header"><code>ar2gr</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L315" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ar2gr</code>(<strong><code>binary</code></strong>:<code>Union</code>[<code>list</code>, <code>ndarray</code>], <strong><code>to</code></strong>:<code>Union</code>[<code>list</code>, <code>ndarray</code>]=<em><code>ndarray</code></em>)</p>
+<h4 id="ar2gr" class="doc_header"><code>ar2gr</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L318" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ar2gr</code>(<strong><code>binary</code></strong>:<code>Union</code>[<code>list</code>, <code>ndarray</code>], <strong><code>to</code></strong>:<code>Union</code>[<code>list</code>, <code>ndarray</code>]=<em><code>ndarray</code></em>)</p>
 </blockquote>
 <p>Converts an input binary array to graycode.</p>
 
@@ -2460,7 +2460,7 @@ XOR(1, 1)=0
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="gr2ar" class="doc_header"><code>gr2ar</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L328" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>gr2ar</code>(<strong><code>gray</code></strong>:<code>Union</code>[<code>list</code>, <code>ndarray</code>], <strong><code>to</code></strong>:<code>Union</code>[<code>list</code>, <code>ndarray</code>]=<em><code>ndarray</code></em>)</p>
+<h4 id="gr2ar" class="doc_header"><code>gr2ar</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L331" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>gr2ar</code>(<strong><code>gray</code></strong>:<code>Union</code>[<code>list</code>, <code>ndarray</code>], <strong><code>to</code></strong>:<code>Union</code>[<code>list</code>, <code>ndarray</code>]=<em><code>ndarray</code></em>)</p>
 </blockquote>
 <p>Converts a gray-code array into binary.</p>
 
@@ -2525,7 +2525,7 @@ XOR(1, 1)=0
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="num2gr" class="doc_header"><code>num2gr</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L344" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>num2gr</code>(<strong><code>x</code></strong>:<code>int</code>, <strong><code>to</code></strong>:<code>Union</code>[<code>NoneType</code>, <code>int</code>, <code>float</code>, <code>list</code>, <code>tuple</code>, <code>str</code>, <code>dict</code>, <code>set</code>, <code>ndarray</code>]=<em><code>None</code></em>)</p>
+<h4 id="num2gr" class="doc_header"><code>num2gr</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L347" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>num2gr</code>(<strong><code>x</code></strong>:<code>int</code>, <strong><code>to</code></strong>:<code>Union</code>[<code>NoneType</code>, <code>int</code>, <code>float</code>, <code>list</code>, <code>tuple</code>, <code>str</code>, <code>dict</code>, <code>set</code>, <code>ndarray</code>]=<em><code>None</code></em>)</p>
 </blockquote>
 <p>Converts decimal number <code>x</code> to equivalent gray-code number.</p>
 
@@ -2599,7 +2599,7 @@ i=10, num2gr(i)=15
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="convert" class="doc_header"><code>convert</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L351" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>convert</code>(<strong><code>obj</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>list</code>, <code>hex</code>, <code>str</code>, <code>ndarray</code>], <strong><code>to</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>list</code>, <code>hex</code>, <code>str</code>, <code>ndarray</code>]=<em><code>ndarray</code></em>, <strong><code>bits</code></strong>:<code>Optional</code>[<code>int</code>]=<em><code>None</code></em>, <strong><code>astype</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>list</code>, <code>ndarray</code>]=<em><code>int</code></em>, <strong><code>gray</code></strong>:<code>bool</code>=<em><code>False</code></em>)</p>
+<h4 id="convert" class="doc_header"><code>convert</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L354" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>convert</code>(<strong><code>obj</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>list</code>, <code>hex</code>, <code>str</code>, <code>ndarray</code>], <strong><code>to</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>list</code>, <code>hex</code>, <code>str</code>, <code>ndarray</code>]=<em><code>ndarray</code></em>, <strong><code>bits</code></strong>:<code>Optional</code>[<code>int</code>]=<em><code>None</code></em>, <strong><code>astype</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>list</code>, <code>ndarray</code>]=<em><code>int</code></em>, <strong><code>gray</code></strong>:<code>bool</code>=<em><code>False</code></em>)</p>
 </blockquote>
 <p>Converts an input <code>obj</code> into an output of type <code>to</code>, padding with <code>bits</code>.
 Internally converts <code>obj</code> to np.ndarray with elements of dtype <code>astype</code>,
@@ -2772,7 +2772,7 @@ Gray Code: From str to hex: convert(0xa,hex)=0xf
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="rint" class="doc_header"><code>rint</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L431" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>rint</code>(<strong><code>x</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>list</code>, <code>ndarray</code>])</p>
+<h4 id="rint" class="doc_header"><code>rint</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L434" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>rint</code>(<strong><code>x</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>list</code>, <code>ndarray</code>])</p>
 </blockquote>
 <p>Typecast rounding to np arrays.</p>
 
@@ -2811,74 +2811,6 @@ Gray Code: From str to hex: convert(0xa,hex)=0xf
 <pre>array([0, 1])</pre>
 </div>
 
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h2 id="RNG" class="doc_header"><code>class</code> <code>RNG</code><a href="https://github.com/Noeloikeau/sidis/tree/master/sidis/conversion.py#L443" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>RNG</code>(<strong><code>seed</code></strong>:<code>Optional</code>[<code>int</code>]=<em><code>0</code></em>)</p>
-</blockquote>
-<p>Globally stable random number generator. Initialized with fixed <code>seed</code>.
-Contains <code>normal</code> and <code>random</code> methods, each with an <code>absval</code> and <code>asint</code> argument,
-which convert to positive values and round to integers respectively.</p>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rng</span><span class="o">=</span><span class="n">RNG</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">shape</span><span class="o">=</span><span class="kc">None</span><span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[[0.63696169 0.26978671]]
-100.64042265044328
-</pre>
-</div>
 </div>
 
 </div>

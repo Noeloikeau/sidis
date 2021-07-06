@@ -2,14 +2,17 @@
 
 __all__ = ['data', 'trycast', 'nonitr2itr', 'itr2nonitr', 'itr2itr', 'Caster', 'isiter', 'cast', 'typestr', 'pad',
            'fill', 'nbits', 'num2ar', 'ar2num', 'ar2hex', 'hex2ar', 'str2ar', 'ar2str', 'COPY', 'NOT', 'AND', 'OR',
-           'Exclusive_OR', 'XOR', 'ar2gr', 'gr2ar', 'num2gr', 'convert', 'rint', 'RNG']
+           'Exclusive_OR', 'XOR', 'ar2gr', 'gr2ar', 'num2gr', 'convert', 'rint']
 
 # Cell
-import typing
-import numpy as np
-from typing import Optional, Tuple, Dict, Callable, Union, Mapping, Sequence, Iterable
-from functools import partial
 import warnings
+with warnings.catch_warnings(): #ignore warnings
+    warnings.simplefilter("ignore")
+    import typing
+    import numpy as np
+    from typing import Optional, Tuple, Dict, Callable, Union, Mapping, Sequence, Iterable, List
+    from functools import partial
+    import warnings
 
 # Cell
 data = Union[None,int,float,list,tuple,str,dict,set,np.ndarray]
@@ -438,47 +441,3 @@ def rint(x: Union[int,float,list,np.ndarray]) -> Union[int,np.ndarray]:
         return np.rint(x).astype(int)
     else:
         return round(x)
-
-# Cell
-class RNG:
-    '''
-    Globally stable random number generator. Initialized with fixed `seed`.
-    Contains `normal` and `random` methods, each with an `absval` and `asint` argument,
-    which convert to positive values and round to integers respectively.
-    '''
-    def __init__(self,seed : Optional[int] = 0):
-        self.rng=np.random.default_rng(seed)
-
-    def typecast(self,
-                 y : Union[int,float],
-                 absval : bool = False,
-                 asint : bool = False) -> Union[int,float,np.ndarray]:
-        if absval:
-            y=abs(y)
-        if asint:
-            y=rint(y)
-        return y
-
-    def normal(self,
-               x : Union[float,int] = 0,
-               y : Union[float,int] = 0,
-               shape : Optional[tuple] = None,
-               absval : bool = False,
-               asint : bool = False) -> Union[int,float,np.ndarray]:
-        '''
-        Draw from a Gaussian distribution with mean `x` and standard deviation `y`.
-        If `shape` is not None, return a numpy array of draws.
-        '''
-        return self.typecast(y=self.rng.normal(loc=x,scale=y,size=shape),absval=absval,asint=asint)
-
-    def random(self,
-               x : Union[float,int] = 0,
-               y : Union[float,int] = 0,
-               shape : Optional[tuple] = None,
-               absval : bool = False,
-               asint : bool = False) -> Union[int,float,np.ndarray]:
-        '''
-        Draw from a uniform distribution in the interval [`x`,`y`].
-        If `shape` is not None, return a numpy array of draws.
-        '''
-        return self.typecast((y-x)*self.rng.random(size=shape),absval=absval,asint=asint)

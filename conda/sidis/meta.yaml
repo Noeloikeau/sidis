@@ -1,0 +1,32 @@
+package:
+  name: sidis
+  version: 0.0.1
+source:
+  sha256: 1976fb434f0fed7a82eacab1332045044088710fb4c3b8b6455deaee012a09a5
+  url: https://files.pythonhosted.org/packages/4a/35/b8ce2d984247bf113d847b3ae8427de9444a1f143f581a0db8609e706054/sidis-0.0.1.tar.gz
+about:
+  dev_url: https://Noeloikeau.github.io
+  doc_url: https://Noeloikeau.github.io
+  home: https://Noeloikeau.github.io
+  license: Apache Software
+  license_family: APACHE
+  summary: Simple Data Interfaces in Python
+build:
+  noarch: python
+  number: '0'
+  script: '{{ PYTHON }} -m pip install . -vv'
+extra:
+  recipe-maintainers:
+  - Noeloikeau
+requirements:
+  host:
+  - pip
+  - python
+  - packaging
+  run:
+  - pip
+  - python
+  - packaging
+test:
+  imports:
+  - sidis

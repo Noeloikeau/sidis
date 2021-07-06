@@ -3,13 +3,16 @@
 __all__ = ['depth', 'flatten', 'unflatten', 'get', 'give', 'sort', 'pipe', 'maps']
 
 # Cell
-import typing
-import numpy as np
-from typing import Optional, Tuple, Dict, Callable, Union, Mapping, Sequence, Iterable
-from functools import partial
 import warnings
-from .conversion import cast,convert
-import collections
+with warnings.catch_warnings(): #ignore warnings
+    warnings.simplefilter("ignore")
+    import typing
+    import numpy as np
+    from typing import Optional, Tuple, Dict, Callable, Union, Mapping, Sequence, Iterable
+    from functools import partial
+    import warnings
+    from .conversion import cast,convert
+    import collections
 
 # Cell
 def depth(obj : Union[dict,list]):
